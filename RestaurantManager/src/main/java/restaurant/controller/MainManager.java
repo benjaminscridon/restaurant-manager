@@ -14,17 +14,19 @@ import javafx.stage.Stage;
  */
 public class MainManager extends Application {
 
+	public static AnchorPane managerRoot;
+	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 
-		AnchorPane root = new AnchorPane();
-		root = FXMLLoader.load(getClass().getResource("/restaurant/view/common/Login.fxml"));
-		Scene scene = new Scene(root, 900, 700);
+		managerRoot = new AnchorPane();
+		managerRoot = FXMLLoader.load(getClass().getResource("/restaurant/view/common/Login.fxml"));
+		Scene managerScene = new Scene(managerRoot, 900, 700);
 
 		primaryStage.setTitle("Manager App");
 		primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/manager_icon.png")));
 		primaryStage.setOpacity(1.0);
-		primaryStage.setScene(scene);
+		primaryStage.setScene(managerScene);
 		primaryStage.show();
 	}
 
