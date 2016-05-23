@@ -22,4 +22,16 @@ public class ActionEmployeeController {
 			e.printStackTrace();
 		}
 	}
+	
+	@FXML
+	private void addEmployee() {
+		AnchorPane addScreen = new AnchorPane();
+		try {
+			addScreen = FXMLLoader.load(getClass().getResource("/restaurant/view/manager/AddEmployee.fxml"));
+			MainManager.managerRoot.getChildren().setAll(addScreen);
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 }
