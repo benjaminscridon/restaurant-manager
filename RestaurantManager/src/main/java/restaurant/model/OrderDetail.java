@@ -63,9 +63,5 @@ public class OrderDetail {
 		return "OrderDetail [order_id=" + order_id + ", product_id=" + product_id + ", product_name=" + product_name
 				+ ", quantity=" + quantity + ", status=" + status + "]";
 	}
-	
-	
-	
-	
 
 }
