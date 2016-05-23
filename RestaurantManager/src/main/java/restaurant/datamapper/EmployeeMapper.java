@@ -17,7 +17,6 @@ import com.mysql.jdbc.PreparedStatement;
 
 import restaurant.model.Employee;
 
-
 /**
  * 
  * @author Beniamin
@@ -71,11 +70,12 @@ public class EmployeeMapper {
 
 		return null;
 	}
-	
-	public void insert(Employee e) {
+
+	public boolean insert(Employee e, File filename) {
 		try {
-			String statement = "INSERT INTO employee(password, job_title, name, birthdate, address, email, mobile, hire_date, fire_date) VALUES (?,?,?,?,?,?,?,?,?)";
-			PreparedStatement dbStatement = (PreparedStatement) DBConnection.getConnection().prepareStatement(statement);
+			String statement = "INSERT INTO employee(password, job_title, name, birthday, address, email, mobile, hire_date, fire_date,image) VALUES (?,?,?,?,?,?,?,?,?,?)";
+			PreparedStatement dbStatement = (PreparedStatement) DBConnection.getConnection()
+					.prepareStatement(statement);
 			dbStatement.setString(1, e.getPassword());
 			dbStatement.setString(2, e.getJob_title());
 			dbStatement.setString(3, e.getName());
@@ -85,9 +85,14 @@ public class EmployeeMapper {
 			dbStatement.setString(7, e.getMobile());
 			dbStatement.setDate(8, (Date) e.getHire_date());
 			dbStatement.setDate(9, (Date) e.getFire_date());
+			FileInputStream fin = new FileInputStream(filename);
+			dbStatement.setBinaryStream(10, (InputStream) fin, (int) filename.length());
+
 			dbStatement.executeUpdate();
+			return true;
 		} catch (Exception e1) {
 			e1.printStackTrace();
+			return false;
 		}
 
 	}
@@ -96,10 +101,11 @@ public class EmployeeMapper {
 		Employee o = new Employee();
 		try {
 			String statement = "SELECT max(employee_no) FROM employee;";
-			PreparedStatement dbStatement = (PreparedStatement) DBConnection.getConnection().prepareStatement(statement);
+			PreparedStatement dbStatement = (PreparedStatement) DBConnection.getConnection()
+					.prepareStatement(statement);
 			ResultSet rs = dbStatement.executeQuery();
 			while (rs.next()) {
-				
+
 				int employee_no = rs.getInt("employee_no");
 				o.setEmployee_no(employee_no);
 			}
@@ -108,16 +114,17 @@ public class EmployeeMapper {
 		}
 		return o;
 	}
-	
+
 	public Employee find(int employee_id) {
 		try {
 			Employee e;
 			String statement = "SELECT * FROM employee where employee_no=?";
-			PreparedStatement dbStatement = (PreparedStatement) DBConnection.getConnection().prepareStatement(statement);
+			PreparedStatement dbStatement = (PreparedStatement) DBConnection.getConnection()
+					.prepareStatement(statement);
 			dbStatement.setInt(1, employee_id);
 			ResultSet rs = dbStatement.executeQuery();
 			while (rs.next()) {
-				int employee_no =rs.getInt("employee_no");
+				int employee_no = rs.getInt("employee_no");
 				String password = rs.getString("password");
 				String job_title = rs.getString("job_title");
 				String name = rs.getString("name");
@@ -127,7 +134,8 @@ public class EmployeeMapper {
 				String mobile = rs.getString("mobile");
 				Date hire_date = rs.getDate("hire_date");
 				Date fire_date = rs.getDate("fire_date");
-				e = new Employee(employee_no,password,job_title,name,birthdate,address,email,mobile,hire_date,fire_date);
+				e = new Employee(employee_no, password, job_title, name, birthdate, address, email, mobile, hire_date,
+						fire_date);
 				return e;
 			}
 		} catch (Exception e) {
@@ -135,18 +143,19 @@ public class EmployeeMapper {
 		}
 		return new Employee();
 	}
-	
+
 	public boolean findEmployeeByEmail(String email) {
 		boolean bool = false;
 		try {
 			String statement = "SELECT * FROM employee where email=?";
-			PreparedStatement dbStatement = (PreparedStatement) DBConnection.getConnection().prepareStatement(statement);
+			PreparedStatement dbStatement = (PreparedStatement) DBConnection.getConnection()
+					.prepareStatement(statement);
 			dbStatement.setString(1, email);
 			ResultSet rs = dbStatement.executeQuery();
 			while (rs.next()) {
-				int employee_no =rs.getInt("employee_no");
-				if(employee_no!=0){
-					bool =true;
+				int employee_no = rs.getInt("employee_no");
+				if (employee_no != 0) {
+					bool = true;
 				}
 			}
 			return bool;
@@ -155,18 +164,19 @@ public class EmployeeMapper {
 		}
 		return bool;
 	}
-	
+
 	public boolean findEmployeeById(int employee_no) {
 		boolean bool = false;
 		try {
 			String statement = "SELECT * FROM employee where employee_no=?";
-			PreparedStatement dbStatement = (PreparedStatement) DBConnection.getConnection().prepareStatement(statement);
+			PreparedStatement dbStatement = (PreparedStatement) DBConnection.getConnection()
+					.prepareStatement(statement);
 			dbStatement.setInt(1, employee_no);
 			ResultSet rs = dbStatement.executeQuery();
 			while (rs.next()) {
-				int employee_id =rs.getInt("employee_no");
-				if(employee_id!=0){
-					bool =true;
+				int employee_id = rs.getInt("employee_no");
+				if (employee_id != 0) {
+					bool = true;
 				}
 			}
 			return bool;
@@ -181,10 +191,11 @@ public class EmployeeMapper {
 		try {
 			Employee e;
 			String statement = "SELECT * FROM order_details";
-			PreparedStatement dbStatement = (PreparedStatement) DBConnection.getConnection().prepareStatement(statement);
+			PreparedStatement dbStatement = (PreparedStatement) DBConnection.getConnection()
+					.prepareStatement(statement);
 			ResultSet rs = dbStatement.executeQuery();
 			while (rs.next()) {
-				int employee_no =rs.getInt("employee_no");
+				int employee_no = rs.getInt("employee_no");
 				String password = rs.getString("password");
 				String job_title = rs.getString("job_title");
 				String name = rs.getString("name");
@@ -194,7 +205,8 @@ public class EmployeeMapper {
 				String mobile = rs.getString("mobile");
 				Date hire_date = rs.getDate("hire_date");
 				Date fire_date = rs.getDate("fire_date");
-				e = new Employee(employee_no,password,job_title,name,birthdate,address,email,mobile,hire_date,fire_date);
+				e = new Employee(employee_no, password, job_title, name, birthdate, address, email, mobile, hire_date,
+						fire_date);
 				employees.add(e);
 			}
 		} catch (Exception e) {
@@ -206,7 +218,8 @@ public class EmployeeMapper {
 	public void update(Employee e) {
 		try {
 			String statement = "UPDATE employee SET password=?, job_title=?, name=?, birthdate=?, address=?, email=?, mobile=?, hire_date=?, fire_date=? where employee_no=?";
-			PreparedStatement dbStatement = (PreparedStatement) DBConnection.getConnection().prepareStatement(statement);
+			PreparedStatement dbStatement = (PreparedStatement) DBConnection.getConnection()
+					.prepareStatement(statement);
 			dbStatement.setString(1, e.getPassword());
 			dbStatement.setString(2, e.getJob_title());
 			dbStatement.setString(3, e.getName());
@@ -216,7 +229,7 @@ public class EmployeeMapper {
 			dbStatement.setString(7, e.getMobile());
 			dbStatement.setDate(8, (Date) e.getHire_date());
 			dbStatement.setDate(9, (Date) e.getFire_date());
-			dbStatement.setInt(10,e.getEmployee_no());
+			dbStatement.setInt(10, e.getEmployee_no());
 			dbStatement.executeUpdate();
 		} catch (Exception e1) {
 			e1.printStackTrace();
@@ -227,7 +240,8 @@ public class EmployeeMapper {
 	public void delete(Employee e) {
 		try {
 			String statement = "DELETE FROM employee where employee_no=?";
-			PreparedStatement dbStatement = (PreparedStatement) DBConnection.getConnection().prepareStatement(statement);
+			PreparedStatement dbStatement = (PreparedStatement) DBConnection.getConnection()
+					.prepareStatement(statement);
 			dbStatement.setInt(1, e.getEmployee_no());
 			dbStatement.executeUpdate();
 		} catch (Exception e1) {
@@ -235,7 +249,5 @@ public class EmployeeMapper {
 		}
 
 	}
-	
-	
-	
+
 }
