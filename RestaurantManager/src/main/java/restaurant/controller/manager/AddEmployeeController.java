@@ -26,8 +26,6 @@ import restaurant.controller.common.validator.FormValidator;
 public class AddEmployeeController implements Initializable {
 
 	@FXML
-	private TextField usernameField;
-	@FXML
 	private TextField passwordField;
 	@FXML
 	private TextField nameField;
@@ -85,18 +83,17 @@ public class AddEmployeeController implements Initializable {
 	private void addEmployee() {
 		message.setText("");
 
-		String username = usernameField.getText();
 		String password = passwordField.getText();
 		String email = emailField.getText();
 		String mobile = mobileField.getText();
 		String name = nameField.getText();
 		String address = addressField.getText();
-		
+
 		String status = "";
 		if (statusField.getValue() != null) {
 			status = (String) statusField.getValue();
 		}
-	
+
 		String birthdate = "";
 		LocalDate date = birthdateField.getValue();
 		java.sql.Date selectedDate = null;
@@ -105,16 +102,18 @@ public class AddEmployeeController implements Initializable {
 			birthdate = selectedDate.toString();
 		}
 
-		if (new FormValidator().validate(
-				new String[] { username, password, status, email, mobile, name, address, birthdate }) == false) {
+		if (new FormValidator()
+				.validate(new String[] { password, status, email, mobile, name, address, birthdate }) == false) {
 			message.setText("Please complete all fields.");
 		} else {
-			
+
 			// create an object with fields
-			//insert into database
-			// o cautare a celui mai nou id 
+			// insert into database
+			// o cautare a celui mai nou id
 			// si dau un raspuns
-			message.setText("Added successfully. Numele have ID : 1234." );
+			/// change pannel si updatez toti employees si il pun primul in
+			// lista
+			message.setText("Added successfully. Numele have ID : 1234.");
 		}
 	}
 
