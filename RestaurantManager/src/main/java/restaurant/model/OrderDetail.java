@@ -15,6 +15,8 @@ public class OrderDetail {
 		this.quantity = quantity;
 		this.status = status;
 	}
+	public OrderDetail(){
+	}
 
 	public int getOrder_id() {
 		return order_id;
