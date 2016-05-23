@@ -19,6 +19,10 @@ public class Order {
 		this.date = date;
 		this.total = total;
 	}
+	
+	public Order(){
+		
+	}
 
 	public int getId() {
 		return id;
