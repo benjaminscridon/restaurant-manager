@@ -1,4 +1,4 @@
-package retaurant.main;
+package restaurant.controller;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -18,7 +18,7 @@ public class Main extends Application {
 	public void start(Stage primaryStage) throws Exception {
 
 		AnchorPane root = new AnchorPane();
-		root = FXMLLoader.load(getClass().getResource("/restaurant/view/manager/ClientActions.fxml"));
+		root = FXMLLoader.load(getClass().getResource("/restaurant/view/manager/Employees.fxml"));
 		Scene scene = new Scene(root, 900, 700);
 
 		primaryStage.setTitle("Manager App");
