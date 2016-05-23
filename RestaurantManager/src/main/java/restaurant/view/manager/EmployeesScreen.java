@@ -7,24 +7,29 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 
-public class EmployeesScreen  extends ScrollPane{
+public class EmployeesScreen extends ScrollPane {
 
 	private GridPane gridPane;
 
-	
-public  void initializeGridPane() {
+	public EmployeesScreen() throws IOException {
 		gridPane = new GridPane();
-		gridPane.setStyle(" -fx-border-color: #1a1a1a;");
-		gridPane.setStyle(" -fx-border-color: #1a1a1a;");
-		//gridPane.setTranslateX(4);
-		//gridPane.setTranslateY(20);
+		initializeGridPane();
+		generateCells();
+	}
+
+	public void initializeGridPane() {
+		gridPane = new GridPane();
+		//gridPane.setStyle(" -fx-border-color: #1a1a1a;");
+		//gridPane.setStyle(" -fx-border-color: #1a1a1a;");
+		gridPane.setTranslateX(4);
+		gridPane.setTranslateY(20);
 		gridPane.setHgap(25);
 		gridPane.setVgap(15); // vertical gap in pixels
 		gridPane.setPadding(new Insets(10, 10, 10, 10));
 	}
 
 	public void generateCells() throws IOException {
-	
+
 		// int numberConferences = conferencesList.size();
 		final int numCols = 3;
 		final int numRows = 24 / numCols + 1;
@@ -72,12 +77,13 @@ public  void initializeGridPane() {
 				break;
 		}
 
-		//this.setHbarPolicy(ScrollBarPolicy.ALWAYS);
-		// this.setId("conferencesScroll");
+		// setVisible(true);
+		this.setHbarPolicy(ScrollBarPolicy.NEVER);
+		this.setId("conferencesScroll");
 		this.getVbarPolicy().getClass();
 		this.setStyle("-fx-background: #1a1a1a;");
 		this.setContent(gridPane);
-	 // this.getStylesheets().add(getClass().getResource("/application.css").toExternalForm());
+		// this.getStylesheets().add(getClass().getResource("/application.css").toExternalForm());
 	}
 
 }

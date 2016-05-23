@@ -37,8 +37,6 @@ public class ActivityController implements Initializable {
 			leftCenterScreen = FXMLLoader.load(getClass().getResource("/restaurant/view/manager/ActionEmployee.fxml"));
 
 			EmployeesScreen gridPane = new EmployeesScreen();
-			gridPane.initializeGridPane();
-			gridPane.generateCells();
 
 			employeesScreen.setLeft(leftCenterScreen);
 			employeesScreen.setCenter(gridPane);
