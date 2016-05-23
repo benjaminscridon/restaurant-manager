@@ -15,21 +15,6 @@ public class Employee {
 	private Date hire_date;
 	private Date fire_date;
 
-	public Employee(int employee_no, String password, String job_title, String name, Date birthdate, String address,
-			String email, String mobile, Date hire_date, Date fire_date) {
-		super();
-		this.employee_no = employee_no;
-		this.password = password;
-		this.job_title = job_title;
-		this.name = name;
-		this.birthdate = birthdate;
-		this.address = address;
-		this.email = email;
-		this.mobile = mobile;
-		this.hire_date = hire_date;
-		this.fire_date = fire_date;
-	}
-
 	public int getEmployee_no() {
 		return employee_no;
 	}
