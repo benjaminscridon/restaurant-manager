@@ -8,7 +8,6 @@ public class Client {
 	private String loyality;
 
 	public Client(int client_no, String name, String mobile, String email, String loyality) {
-		super();
 		this.client_no = client_no;
 		this.name = name;
 		this.mobile = mobile;

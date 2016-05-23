@@ -9,7 +9,6 @@ public class OrderDetail {
 	private String status;
 	
 	public OrderDetail(int order_id, int product_id, String product_name, int quantity, String status) {
-		super();
 		this.order_id = order_id;
 		this.product_id = product_id;
 		this.product_name = product_name;

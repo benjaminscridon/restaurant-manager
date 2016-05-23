@@ -17,7 +17,6 @@ public class Employee {
 
 	public Employee(int employee_no, String password, String job_title, String name, Date birthdate, String address,
 			String email, String mobile, Date hire_date, Date fire_date) {
-		super();
 		this.employee_no = employee_no;
 		this.password = password;
 		this.job_title = job_title;
@@ -28,6 +27,9 @@ public class Employee {
 		this.mobile = mobile;
 		this.hire_date = hire_date;
 		this.fire_date = fire_date;
+	}
+	public Employee(){
+		
 	}
 
 	public int getEmployee_no() {
