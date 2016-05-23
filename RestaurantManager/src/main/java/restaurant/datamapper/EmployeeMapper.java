@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -15,7 +16,6 @@ import javax.imageio.ImageIO;
 import com.mysql.jdbc.PreparedStatement;
 
 import restaurant.model.Employee;
-import restaurant.model.OrderDetail;
 
 
 /**
@@ -72,18 +72,22 @@ public class EmployeeMapper {
 		return null;
 	}
 	
-	public void insert(OrderDetail o) {
+	public void insert(Employee e) {
 		try {
-			String statement = "INSERT INTO order_details(order_id, product_id, product_name, quantity, status) VALUES (?,?,?,?,?)";
+			String statement = "INSERT INTO employee(password, job_title, name, birthdate, address, email, mobile, hire_date, fire_date) VALUES (?,?,?,?,?,?,?,?,?)";
 			PreparedStatement dbStatement = (PreparedStatement) DBConnection.getConnection().prepareStatement(statement);
-			dbStatement.setInt(1, o.getOrder_id());
-			dbStatement.setInt(2, o.getProduct_id());
-			dbStatement.setString(3, o.getProduct_name());
-			dbStatement.setInt(4, o.getQuantity());
-			dbStatement.setString(5, o.getStatus());
+			dbStatement.setString(1, e.getPassword());
+			dbStatement.setString(2, e.getJob_title());
+			dbStatement.setString(3, e.getName());
+			dbStatement.setDate(4, (Date) e.getBirthdate());
+			dbStatement.setString(5, e.getAddress());
+			dbStatement.setString(6, e.getEmail());
+			dbStatement.setString(7, e.getMobile());
+			dbStatement.setDate(8, (Date) e.getHire_date());
+			dbStatement.setDate(9, (Date) e.getFire_date());
 			dbStatement.executeUpdate();
-		} catch (Exception e) {
-			e.printStackTrace();
+		} catch (Exception e1) {
+			e1.printStackTrace();
 		}
 
 	}
@@ -104,54 +108,130 @@ public class EmployeeMapper {
 		}
 		return o;
 	}
-
-	public ArrayList<OrderDetail> findALL() {
-		ArrayList<OrderDetail> orders = new ArrayList<OrderDetail>();
+	
+	public Employee find(int employee_id) {
 		try {
-			OrderDetail o;
-			String statement = "SELECT * FROM order_details";
+			Employee e;
+			String statement = "SELECT * FROM employee where employee_no=?";
 			PreparedStatement dbStatement = (PreparedStatement) DBConnection.getConnection().prepareStatement(statement);
+			dbStatement.setInt(1, employee_id);
 			ResultSet rs = dbStatement.executeQuery();
 			while (rs.next()) {
-				int order_no = rs.getInt("order_id");
-				int product_id = rs.getInt("product_id");
-				String product_name = rs.getString("product_name");
-				int quantity = rs.getInt("quantity");
-				String status = rs.getString("status");
-				o = new OrderDetail(order_no, product_id, product_name, quantity, status);
-				orders.add(o);
+				int employee_no =rs.getInt("employee_no");
+				String password = rs.getString("password");
+				String job_title = rs.getString("job_title");
+				String name = rs.getString("name");
+				Date birthdate = rs.getDate("birthdate");
+				String address = rs.getString("address");
+				String email = rs.getString("email");
+				String mobile = rs.getString("mobile");
+				Date hire_date = rs.getDate("hire_date");
+				Date fire_date = rs.getDate("fire_date");
+				e = new Employee(employee_no,password,job_title,name,birthdate,address,email,mobile,hire_date,fire_date);
+				return e;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return orders;
+		return new Employee();
 	}
-
-	public void update(OrderDetail o) {
+	
+	public boolean findEmployeeByEmail(String email) {
+		boolean bool = false;
 		try {
-			String statement = "UPDATE order_details SET product_id=?,product_name=?,quantity=?,status=? where order_id=? and product_id=?";
+			String statement = "SELECT * FROM employee where email=?";
 			PreparedStatement dbStatement = (PreparedStatement) DBConnection.getConnection().prepareStatement(statement);
-			dbStatement.setInt(1, o.getProduct_id());
-			dbStatement.setString(2, o.getProduct_name());
-			dbStatement.setInt(3, o.getQuantity());
-			dbStatement.setString(4, o.getStatus());
-			dbStatement.setInt(5, o.getOrder_id());
-			dbStatement.setInt(6, o.getProduct_id());
-			dbStatement.executeUpdate();
+			dbStatement.setString(1, email);
+			ResultSet rs = dbStatement.executeQuery();
+			while (rs.next()) {
+				int employee_no =rs.getInt("employee_no");
+				if(employee_no!=0){
+					bool =true;
+				}
+			}
+			return bool;
 		} catch (Exception e) {
 			e.printStackTrace();
+		}
+		return bool;
+	}
+	
+	public boolean findEmployeeById(int employee_no) {
+		boolean bool = false;
+		try {
+			String statement = "SELECT * FROM employee where employee_no=?";
+			PreparedStatement dbStatement = (PreparedStatement) DBConnection.getConnection().prepareStatement(statement);
+			dbStatement.setInt(1, employee_no);
+			ResultSet rs = dbStatement.executeQuery();
+			while (rs.next()) {
+				int employee_id =rs.getInt("employee_no");
+				if(employee_id!=0){
+					bool =true;
+				}
+			}
+			return bool;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return bool;
+	}
+
+	public ArrayList<Employee> findALL() {
+		ArrayList<Employee> employees = new ArrayList<Employee>();
+		try {
+			Employee e;
+			String statement = "SELECT * FROM order_details";
+			PreparedStatement dbStatement = (PreparedStatement) DBConnection.getConnection().prepareStatement(statement);
+			ResultSet rs = dbStatement.executeQuery();
+			while (rs.next()) {
+				int employee_no =rs.getInt("employee_no");
+				String password = rs.getString("password");
+				String job_title = rs.getString("job_title");
+				String name = rs.getString("name");
+				Date birthdate = rs.getDate("birthdate");
+				String address = rs.getString("address");
+				String email = rs.getString("email");
+				String mobile = rs.getString("mobile");
+				Date hire_date = rs.getDate("hire_date");
+				Date fire_date = rs.getDate("fire_date");
+				e = new Employee(employee_no,password,job_title,name,birthdate,address,email,mobile,hire_date,fire_date);
+				employees.add(e);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return employees;
+	}
+
+	public void update(Employee e) {
+		try {
+			String statement = "UPDATE employee SET password=?, job_title=?, name=?, birthdate=?, address=?, email=?, mobile=?, hire_date=?, fire_date=? where employee_no=?";
+			PreparedStatement dbStatement = (PreparedStatement) DBConnection.getConnection().prepareStatement(statement);
+			dbStatement.setString(1, e.getPassword());
+			dbStatement.setString(2, e.getJob_title());
+			dbStatement.setString(3, e.getName());
+			dbStatement.setDate(4, (Date) e.getBirthdate());
+			dbStatement.setString(5, e.getAddress());
+			dbStatement.setString(6, e.getEmail());
+			dbStatement.setString(7, e.getMobile());
+			dbStatement.setDate(8, (Date) e.getHire_date());
+			dbStatement.setDate(9, (Date) e.getFire_date());
+			dbStatement.setInt(10,e.getEmployee_no());
+			dbStatement.executeUpdate();
+		} catch (Exception e1) {
+			e1.printStackTrace();
 		}
 
 	}
 
-	public void delete(OrderDetail o) {
+	public void delete(Employee e) {
 		try {
-			String statement = "DELETE FROM order_details where order_id=?";
+			String statement = "DELETE FROM employee where employee_no=?";
 			PreparedStatement dbStatement = (PreparedStatement) DBConnection.getConnection().prepareStatement(statement);
-			dbStatement.setInt(1, o.getOrder_id());
+			dbStatement.setInt(1, e.getEmployee_no());
 			dbStatement.executeUpdate();
-		} catch (Exception e) {
-			e.printStackTrace();
+		} catch (Exception e1) {
+			e1.printStackTrace();
 		}
 
 	}
