@@ -12,7 +12,6 @@ public class Order {
 	private float total;
 	
 	public Order(int id, int table_no, int client_id, int waiter_id, Date date, float total) {
-		super();
 		this.id = id;
 		this.table_no = table_no;
 		this.client_id = client_id;
