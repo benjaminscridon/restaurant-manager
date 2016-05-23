@@ -5,14 +5,17 @@ public class Client {
 	private String name;
 	private String mobile;
 	private String email;
-	private String loyality;
+	private int loyality;
 
-	public Client(int client_no, String name, String mobile, String email, String loyality) {
+	public Client(int client_no, String name, String mobile, String email, int loyality) {
 		this.client_no = client_no;
 		this.name = name;
 		this.mobile = mobile;
 		this.email = email;
 		this.loyality = loyality;
+	}
+	public Client(){
+		
 	}
 
 	public int getClient_no() {
@@ -47,11 +50,11 @@ public class Client {
 		this.email = email;
 	}
 
-	public String getLoyality() {
+	public int getLoyality() {
 		return loyality;
 	}
 
-	public void setLoyality(String loyality) {
+	public void setLoyality(int loyality) {
 		this.loyality = loyality;
 	}
 
