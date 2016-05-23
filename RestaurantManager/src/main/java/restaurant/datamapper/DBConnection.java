@@ -13,7 +13,7 @@ public class DBConnection {
 		try {
 
 			Class.forName(DRIVER);
-			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hospital", "root", "password");
+			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hospital", "root", "123456");
 			instruction = ((java.sql.Connection) con).createStatement();
 
 		} catch (ClassNotFoundException e) {
