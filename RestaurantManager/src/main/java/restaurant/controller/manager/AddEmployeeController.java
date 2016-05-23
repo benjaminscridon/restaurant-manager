@@ -5,11 +5,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 import javax.imageio.ImageIO;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.embed.swing.SwingFXUtils;
@@ -79,6 +75,11 @@ public class AddEmployeeController implements Initializable {
 		} catch (IOException ex) {
 			ex.printStackTrace();
 		}
+	}
+	
+	@FXML
+	private void addEmployee(){
+		
 	}
 
 }
