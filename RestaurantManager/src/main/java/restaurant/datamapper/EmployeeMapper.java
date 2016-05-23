@@ -74,7 +74,7 @@ public class EmployeeMapper {
 	
 	public void insert(Employee e) {
 		try {
-			String statement = "INSERT INTO employee(password, job_title, name, birthdate, address, email, mobile, hire_date, fire_date) VALUES (?,?,?,?,?,?,?,?,?)";
+			String statement = "INSERT INTO employee(password, job_title, name, birthday, address, email, mobile, hire_date, fire_date) VALUES (?,?,?,?,?,?,?,?,?)";
 			PreparedStatement dbStatement = (PreparedStatement) DBConnection.getConnection().prepareStatement(statement);
 			dbStatement.setString(1, e.getPassword());
 			dbStatement.setString(2, e.getJob_title());
@@ -121,7 +121,7 @@ public class EmployeeMapper {
 				String password = rs.getString("password");
 				String job_title = rs.getString("job_title");
 				String name = rs.getString("name");
-				Date birthdate = rs.getDate("birthdate");
+				Date birthdate = rs.getDate("birthday");
 				String address = rs.getString("address");
 				String email = rs.getString("email");
 				String mobile = rs.getString("mobile");
@@ -180,7 +180,7 @@ public class EmployeeMapper {
 		ArrayList<Employee> employees = new ArrayList<Employee>();
 		try {
 			Employee e;
-			String statement = "SELECT * FROM order_details";
+			String statement = "SELECT * FROM employee";
 			PreparedStatement dbStatement = (PreparedStatement) DBConnection.getConnection().prepareStatement(statement);
 			ResultSet rs = dbStatement.executeQuery();
 			while (rs.next()) {
@@ -188,7 +188,7 @@ public class EmployeeMapper {
 				String password = rs.getString("password");
 				String job_title = rs.getString("job_title");
 				String name = rs.getString("name");
-				Date birthdate = rs.getDate("birthdate");
+				Date birthdate = rs.getDate("birthday");
 				String address = rs.getString("address");
 				String email = rs.getString("email");
 				String mobile = rs.getString("mobile");
@@ -205,7 +205,7 @@ public class EmployeeMapper {
 
 	public void update(Employee e) {
 		try {
-			String statement = "UPDATE employee SET password=?, job_title=?, name=?, birthdate=?, address=?, email=?, mobile=?, hire_date=?, fire_date=? where employee_no=?";
+			String statement = "UPDATE employee SET password=?, job_title=?, name=?, birthday=?, address=?, email=?, mobile=?, hire_date=?, fire_date=? where employee_no=?";
 			PreparedStatement dbStatement = (PreparedStatement) DBConnection.getConnection().prepareStatement(statement);
 			dbStatement.setString(1, e.getPassword());
 			dbStatement.setString(2, e.getJob_title());
