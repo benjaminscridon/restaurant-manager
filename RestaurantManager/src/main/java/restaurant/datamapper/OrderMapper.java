@@ -9,7 +9,7 @@ public class OrderMapper {
 
 	public void insert(Order o) {
 		try {
-			String statement = "INSERT INTO order (table_no, client_id, waiter_id, date, total) VALUES (?,?,?,?,?)";
+			String statement = "INSERT INTO orders(table_no, client_id, waiter_id, date, total) VALUES (?,?,?,?,?)";
 			PreparedStatement dbStatement = DBConnection.getConnection().prepareStatement(statement);
 			dbStatement.setInt(1, o.getTable_no());
 			dbStatement.setInt(2, o.getClient_id());
@@ -26,7 +26,7 @@ public class OrderMapper {
 	public Order find(int order_id) {
 		try {
 			Order o;
-			String statement = "SELECT * FROM order where order_id=?";
+			String statement = "SELECT * FROM orders where id=?";
 			PreparedStatement dbStatement = DBConnection.getConnection().prepareStatement(statement);
 			dbStatement.setInt(1, order_id);
 			ResultSet rs = dbStatement.executeQuery();
@@ -50,7 +50,7 @@ public class OrderMapper {
 		ArrayList<Order> orders = new ArrayList<Order>();
 		try {
 			Order o;
-			String statement = "SELECT * FROM order";
+			String statement = "SELECT * FROM orders";
 			PreparedStatement dbStatement = DBConnection.getConnection().prepareStatement(statement);
 			ResultSet rs = dbStatement.executeQuery();
 			while (rs.next()) {
@@ -71,7 +71,7 @@ public class OrderMapper {
 
 	public void update(Order o) {
 		try {
-			String statement = "UPDATE order SET table_no=?,client_id=?,waiter_id=?,date=?,total=? where id=?";
+			String statement = "UPDATE orders SET table_no=?,client_id=?,waiter_id=?,date=?,total=? where id=?";
 			PreparedStatement dbStatement = DBConnection.getConnection().prepareStatement(statement);
 			dbStatement.setInt(1, o.getTable_no());
 			dbStatement.setInt(2, o.getClient_id());
@@ -88,7 +88,7 @@ public class OrderMapper {
 
 	public void delete(Order o ) {
 		try {
-			String statement = "DELETE FROM order where id=?";
+			String statement = "DELETE FROM orders where id=?";
 			PreparedStatement dbStatement = DBConnection.getConnection().prepareStatement(statement);
 			dbStatement.setInt(1, o.getId());
 			dbStatement.executeUpdate();
