@@ -4,6 +4,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 import javax.imageio.ImageIO;
 import javafx.collections.FXCollections;
@@ -18,6 +19,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
+import restaurant.controller.common.MapperController;
+import restaurant.controller.common.validator.EmailValidator;
+import restaurant.controller.common.validator.FormValidator;
 
 public class AddEmployeeController implements Initializable {
 
@@ -28,11 +32,11 @@ public class AddEmployeeController implements Initializable {
 	@FXML
 	private TextField nameField;
 	@FXML
-	private TextField addressFiled;
+	private TextField addressField;
 	@FXML
 	private TextField emailField;
 	@FXML
-	private TextField mobile;
+	private TextField mobileField;
 	@FXML
 	private ComboBox<String> statusField;
 
@@ -76,10 +80,49 @@ public class AddEmployeeController implements Initializable {
 			ex.printStackTrace();
 		}
 	}
-	
+
 	@FXML
-	private void addEmployee(){
+	private void addEmployee() {
+		message.setText("");
+
+		String username = usernameField.getText();
+		String password = passwordField.getText();
+		String email = emailField.getText();
+		String mobile = mobileField.getText();
+		String name = nameField.getText();
+		String address = addressField.getText();
 		
+		String status = "";
+		if (statusField.getValue() != null) {
+			status = (String) statusField.getValue();
+		}
+	
+		String birthdate = "";
+		LocalDate date = birthdateField.getValue();
+		java.sql.Date selectedDate = null;
+		if (date != null) {
+			selectedDate = java.sql.Date.valueOf(date);
+			birthdate = selectedDate.toString();
+		}
+
+		if (new FormValidator().validate(
+				new String[] { username, password, status, email, mobile, name, address, birthdate }) == false) {
+			message.setText("Please complete all fields.");
+		} else {
+			
+			// create an object with fields
+			//insert into database
+			// o cautare a celui mai nou id 
+			// si dau un raspuns
+			message.setText("Added successfully. Numele have ID : 1234." );
+		}
+	}
+
+	private boolean validateMail(String email) {
+		if (new EmailValidator().validate(email) == false) {
+			message.setText("Invalid email.");
+		}
+		return true;
 	}
 
 }
