@@ -2,7 +2,6 @@ package restaurant.datamapper;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import restaurant.model.Client;
 import restaurant.model.Product;
 
 public class ProductMapper {
@@ -50,6 +49,29 @@ public class ProductMapper {
 			Product p;
 			String statement = "SELECT * FROM product";
 			PreparedStatement dbStatement = DBConnection.getConnection().prepareStatement(statement);
+			ResultSet rs = dbStatement.executeQuery();
+			while (rs.next()) {
+				int product_no = rs.getInt("product_id");
+				String name = rs.getString("name");
+				String type = rs.getString("type");
+				float price = rs.getFloat("price");
+				String description = rs.getString("description");
+				p = new Product(product_no, name, type, price, description);
+				products.add(p);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return products;
+	}
+	
+	public ArrayList<Product> findProductByName(String productName) {
+		ArrayList<Product> products = new ArrayList<Product>();
+		try {
+			Product p;
+			String statement = "SELECT * FROM product WHERE name=?";
+			PreparedStatement dbStatement = DBConnection.getConnection().prepareStatement(statement);
+			dbStatement.setString(1, productName);
 			ResultSet rs = dbStatement.executeQuery();
 			while (rs.next()) {
 				int product_no = rs.getInt("product_id");
