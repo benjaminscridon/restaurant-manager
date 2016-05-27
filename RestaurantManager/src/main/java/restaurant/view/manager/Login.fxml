@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="904.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="restaurant.controller.manager.LoginController">
+	<center>
+		<StackPane prefHeight="452.0" prefWidth="663.0" BorderPane.alignment="CENTER">
+			<children>
+				<Label prefHeight="65.0" prefWidth="412.0" text="ewerwe ewr wer wer wer" textFill="#c6c6c6">
+					<font>
+						<Font size="33.0" />
+					</font>
+				</Label>
+				<Rectangle arcHeight="5.0" arcWidth="5.0" fill="#727272" height="200.0" opacity="0.3" stroke="BLACK" strokeType="INSIDE" width="446.0" />
+			</children>
+		</StackPane>
+	</center>
+</BorderPane>
