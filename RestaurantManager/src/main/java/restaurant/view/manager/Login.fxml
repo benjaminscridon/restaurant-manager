@@ -22,17 +22,17 @@
 			</effect>
 
 		</ImageView>
-		<Button id="button" layoutX="371.0" layoutY="362.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="227.0" text="Button" textFill="WHITE">
+		<Button layoutX="371.0" layoutY="362.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="227.0" text="Button" textFill="WHITE">
 			<font>
 				<Font size="15.0" />
 			</font>
 		</Button>
-		<TextField id="textField" alignment="CENTER" layoutX="371.0" layoutY="255.0" prefHeight="35.0" prefWidth="227.0" promptText="manager_no" styleClass="text-field">
+		<TextField alignment="CENTER" layoutX="371.0" layoutY="255.0" prefHeight="35.0" prefWidth="227.0" promptText="manager_no" styleClass="text-field">
 			<font>
 				<Font size="15.0" />
 			</font>
 		</TextField>
-		<PasswordField id="textField" alignment="CENTER" layoutX="372.0" layoutY="308.0" prefHeight="35.0" prefWidth="227.0" promptText="password">
+		<PasswordField alignment="CENTER" layoutX="372.0" layoutY="308.0" prefHeight="35.0" prefWidth="227.0" promptText="password" styleClass="text-field">
 			<font>
 				<Font size="15.0" />
 			</font>
