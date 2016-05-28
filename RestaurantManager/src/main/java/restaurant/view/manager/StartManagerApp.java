@@ -39,9 +39,25 @@ public class StartManagerApp extends Application {
 		primaryStage.setResizable(false);
 		Scene scene = new Scene(root, 950, 700);
 
+<<<<<<< HEAD
 		// root.prefHeightProperty().bind(primaryStage.heightProperty());
 		// root.prefWidthProperty().bind(primaryStage.widthProperty());pr
 	 //scene.getStylesheets().add(getClass().getResource("/application.css").toExternalForm());
+=======
+		
+		BorderPane root =FXMLLoader.load(getClass().getResource("/restaurant/view/manager/Login.fxml"));
+//		Image image=new Image("/restaurant4.jpg");
+//		
+//		ImageView img = new ImageView();
+//		img.setImage(image);
+//		 img.fitWidthProperty().bind(primaryStage.widthProperty());
+//		
+//		 root.setCenter(img);
+		 
+		primaryStage.setMaximized(true);
+		Scene scene = new Scene(root);
+		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+>>>>>>> origin/master
 		primaryStage.setScene(scene);
 		// primaryStage.setMaximized(true);
 		primaryStage.show();
