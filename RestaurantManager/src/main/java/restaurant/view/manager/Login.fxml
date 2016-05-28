@@ -1,22 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.BoxBlur?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="904.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="restaurant.controller.manager.LoginController">
-	<center>
-		<StackPane prefHeight="452.0" prefWidth="663.0" BorderPane.alignment="CENTER">
-			<children>
-				<Label prefHeight="65.0" prefWidth="412.0" text="ewerwe ewr wer wer wer" textFill="#c6c6c6">
-					<font>
-						<Font size="33.0" />
-					</font>
-				</Label>
-				<Rectangle arcHeight="5.0" arcWidth="5.0" fill="#727272" height="200.0" opacity="0.3" stroke="BLACK" strokeType="INSIDE" width="446.0" />
-			</children>
-		</StackPane>
-	</center>
-</BorderPane>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="950.0" stylesheets="@../../../../resources/application.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="restaurant.view.manager.LoginController">
+	<children>
+		<ImageView fx:id="image" fitHeight="700.0" fitWidth="960.0" layoutX="-4.0" pickOnBounds="true" smooth="false">
+			<image>
+				<Image url="@../../../../resources/background_restaurant.jpg" />
+			</image>
+			<effect>
+				<BoxBlur height="0.0" width="0.0" />
+			</effect>
+
+		</ImageView>
+		<Button id="button" layoutX="371.0" layoutY="362.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="227.0" text="Button" textFill="WHITE">
+			<font>
+				<Font size="15.0" />
+			</font>
+		</Button>
+		<TextField id="textField" alignment="CENTER" layoutX="371.0" layoutY="255.0" prefHeight="35.0" prefWidth="227.0" promptText="manager_no" styleClass="text-field">
+			<font>
+				<Font size="15.0" />
+			</font>
+		</TextField>
+		<PasswordField id="textField" alignment="CENTER" layoutX="372.0" layoutY="308.0" prefHeight="35.0" prefWidth="227.0" promptText="password">
+			<font>
+				<Font size="15.0" />
+			</font>
+		</PasswordField>
+		<Rectangle arcHeight="5.0" arcWidth="5.0" disable="true" fill="#030303" height="277.0" layoutX="350.0" layoutY="175.0" opacity="0.51" stroke="BLACK" strokeType="INSIDE" width="272.0">
+			<effect>
+				<BoxBlur height="26.25" width="53.57" />
+			</effect>
+		</Rectangle>
+		<Label layoutX="434.0" layoutY="204.0" prefHeight="35.0" prefWidth="101.0" text="Welcome" textFill="#da920191">
+			<font>
+				<Font name="Forte" size="26.0" />
+			</font>
+		</Label>
+	</children>
+</AnchorPane>
