@@ -13,6 +13,7 @@ public class StartManagerApp extends Application {
 	public void start(Stage primaryStage) throws Exception {
 
 
+		
 		BorderPane root =FXMLLoader.load(getClass().getResource("/restaurant/view/manager/Login.fxml"));
 //		Image image=new Image("/restaurant4.jpg");
 //		
