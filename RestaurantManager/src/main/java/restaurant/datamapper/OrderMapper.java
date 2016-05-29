@@ -3,7 +3,8 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import restaurant.model.Order;
+
+import restaurant.server.model.Order;
 
 public class OrderMapper {
 

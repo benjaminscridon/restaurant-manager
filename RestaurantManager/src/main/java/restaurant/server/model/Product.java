@@ -1,4 +1,4 @@
-package restaurant.model;
+package restaurant.server.model;
 
 public class Product {
 	

@@ -2,7 +2,8 @@ package restaurant.datamapper;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import restaurant.model.Product;
+
+import restaurant.server.model.Product;
 
 public class ProductMapper {
 

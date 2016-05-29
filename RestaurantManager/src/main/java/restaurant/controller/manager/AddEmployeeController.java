@@ -28,7 +28,7 @@ import restaurant.controller.common.validator.EmailValidator;
 import restaurant.controller.common.validator.FormValidator;
 import restaurant.controller.common.validator.MobileValidator;
 import restaurant.controller.common.validator.PasswordValidator;
-import restaurant.model.Employee;
+import restaurant.server.model.Employee;
 
 public class AddEmployeeController implements Initializable {
 

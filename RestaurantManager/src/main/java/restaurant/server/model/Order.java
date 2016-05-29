@@ -1,4 +1,4 @@
-package restaurant.model;
+package restaurant.server.model;
 
 import java.sql.Date;
 

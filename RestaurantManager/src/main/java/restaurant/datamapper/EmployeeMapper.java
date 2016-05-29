@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import com.mysql.jdbc.PreparedStatement;
 
-import restaurant.model.Employee;
+import restaurant.server.model.Employee;
 
 /**
  * 
