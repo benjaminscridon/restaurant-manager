@@ -1,6 +1,6 @@
 package restaurant.controller.manager;
 
-import restaurant.model.Employee;
+import restaurant.server.model.Employee;
 
 /**
  * 
