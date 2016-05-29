@@ -1,9 +1,9 @@
 package restaurant.controller.common;
 
-import restaurant.datamapper.ClientMapper;
-import restaurant.datamapper.EmployeeMapper;
-import restaurant.datamapper.OrderDetailMapper;
-import restaurant.datamapper.OrderMapper;
+import restaurant.server.datamapper.ClientMapper;
+import restaurant.server.datamapper.EmployeeMapper;
+import restaurant.server.datamapper.OrderDetailMapper;
+import restaurant.server.datamapper.OrderMapper;
 
 public class MapperController {
 	private static ClientMapper clientMapper;

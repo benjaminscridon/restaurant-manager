@@ -1,4 +1,4 @@
-package restaurant.datamapper;
+package restaurant.server.datamapper;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
