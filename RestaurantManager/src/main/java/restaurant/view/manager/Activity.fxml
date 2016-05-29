@@ -1,63 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.GaussianBlur?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity"
-	minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0"
-	prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1"
-	fx:controller="restaurant.controller.manager.ActivityController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="restaurant.controller.manager.ActivityController">
 	<children>
-		<Button layoutX="40.0" layoutY="-86.0" mnemonicParsing="false"
-			onAction="#employeesScreen" prefHeight="181.0" prefWidth="241.0"
-			text="Employees" translateX="30.0" translateY="250.0">
+		<ImageView fx:id="image" fitHeight="700.0" fitWidth="960.0" layoutX="-4.0" opacity="0.91" pickOnBounds="true">
+			<image>
+				<Image url="@../../../../resources/background_restaurant.jpg" />
+			</image>
+			<effect>
+				<GaussianBlur radius="0.0" />
+			</effect>
+
+		</ImageView>
+		<Label alignment="CENTER" layoutX="597.0" layoutY="190.0" onMouseClicked="#setActivityScreen" opacity="0.65" prefHeight="177.0" prefWidth="197.0" styleClass="labelActivity" stylesheets="@../../../../resources/manager.css" text="Today's Activity" textFill="#ff9c00">
 			<font>
-				<Font size="18.0" />
-			</font>
-		</Button>
-		<Button layoutX="769.0" layoutY="31.0" mnemonicParsing="false"
-			onAction="#logout" prefHeight="31.0" prefWidth="82.0" text="Logout">
-			<font>
-				<Font size="15.0" />
-			</font>
-		</Button>
-		<Button layoutX="343.0" layoutY="164.0" mnemonicParsing="false"
-			prefHeight="181.0" prefWidth="241.0" text="Kitchen">
-			<font>
-				<Font size="18.0" />
-			</font>
-		</Button>
-		<Button layoutX="610.0" layoutY="164.0" mnemonicParsing="false"
-			prefHeight="181.0" prefWidth="241.0" text="Waiters">
-			<font>
-				<Font size="18.0" />
-			</font>
-		</Button>
-		<Button layoutX="70.0" layoutY="379.0" mnemonicParsing="false"
-			prefHeight="181.0" prefWidth="241.0" text="Orders">
-			<font>
-				<Font size="18.0" />
-			</font>
-		</Button>
-		<Button layoutX="343.0" layoutY="379.0" mnemonicParsing="false"
-			prefHeight="181.0" prefWidth="241.0" text="Products">
-			<font>
-				<Font size="18.0" />
-			</font>
-		</Button>
-		<Button layoutX="610.0" layoutY="379.0" mnemonicParsing="false"
-			prefHeight="181.0" prefWidth="241.0" text="Privacy">
-			<font>
-				<Font size="18.0" />
-			</font>
-		</Button>
-		<Label alignment="CENTER_RIGHT" layoutX="412.0" layoutY="31.0"
-			prefHeight="31.0" prefWidth="343.0" text="[username.benjamin]">
-			<font>
-				<Font size="17.0" />
+				<Font name="Britannic Bold" size="26.0" />
 			</font>
 		</Label>
+		<Label alignment="CENTER" layoutX="400.0" layoutY="190.0" onMouseClicked="#setOrdersScreen" opacity="0.77" prefHeight="177.0" prefWidth="197.0" styleClass="labelActivity" stylesheets="@../../../../resources/manager.css" text="Orders" textFill="#ff9c00">
+			<font>
+				<Font name="Britannic Bold" size="26.0" />
+			</font>
+		</Label>
+		<Label alignment="CENTER" layoutX="203.0" layoutY="367.0" onMouseClicked="#setProductsScreen" opacity="0.77" prefHeight="177.0" prefWidth="197.0" styleClass="labelActivity" stylesheets="@../../../../resources/manager.css" text="Products" textFill="#ff9c00">
+			<font>
+				<Font name="Britannic Bold" size="26.0" />
+			</font>
+		</Label>
+		<Label alignment="CENTER_RIGHT" layoutX="351.0" layoutY="122.0" opacity="0.59" prefHeight="38.0" prefWidth="436.0" text="Welcome, Benjamin Scridon" textFill="#fc9700">
+			<font>
+				<Font name="Britannic Bold" size="24.0" />
+			</font>
+		</Label>
+		<Label alignment="CENTER" layoutX="203.0" layoutY="190.0" onMouseClicked="#setEmployeesScreen" opacity="0.65" prefHeight="177.0" prefWidth="197.0" styleClass="labelActivity" stylesheets="@../../../../resources/manager.css" text="Employees" textFill="#ff9c00">
+			<font>
+				<Font name="Britannic Bold" size="26.0" />
+			</font>
+		</Label>
+      <Label alignment="CENTER" layoutX="597.0" layoutY="367.0" onMouseClicked="#logout" opacity="0.77" prefHeight="177.0" prefWidth="197.0" styleClass="labelActivity" stylesheets="@../../../../resources/manager.css" text="Logout" textFill="#ff9c00">
+         <font>
+            <Font name="Britannic Bold" size="26.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="400.0" layoutY="367.0" onMouseClicked="#setPrivacyScreen" opacity="0.65" prefHeight="177.0" prefWidth="197.0" styleClass="labelActivity" stylesheets="@../../../../resources/manager.css" text="Privacy" textFill="#ff9c00">
+         <font>
+            <Font name="Britannic Bold" size="26.0" />
+         </font>
+      </Label>
 	</children>
 </AnchorPane>

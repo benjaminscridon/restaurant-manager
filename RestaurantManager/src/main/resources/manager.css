@@ -14,3 +14,16 @@
 .button:selected {
     -fx-background-color: Green;
 }
+
+
+
+.labelActivity{
+	-fx-background-color:black;
+}
+
+.labelActivity:hover{
+	-fx-background-color:black;
+	 -fx-border-color: gray;
+}
+
+ 

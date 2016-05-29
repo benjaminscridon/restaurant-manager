@@ -3,49 +3,58 @@ package restaurant.controller.manager;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
-import restaurant.controller.MainManager;
-import restaurant.view.manager.EmployeesScreen;
 
+/**
+ * 
+ * @author Beniamin
+ * @since 2016-05-29
+ */
 public class ActivityController implements Initializable {
 
+	@FXML
+	private ImageView image;
+
+	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		Image img = new Image("/background_restaurant.jpg");
+		image.setImage(img);
 
 	}
 
 	@FXML
 	private void logout() {
-		AnchorPane loginScreen = new AnchorPane();
 		try {
-			loginScreen = FXMLLoader.load(getClass().getResource("/restaurant/view/common/Login.fxml"));
-			MainManager.managerRoot.getChildren().setAll(loginScreen);
+			AnchorPane login = FXMLLoader.load(getClass().getResource("/restaurant/view/manager/Login.fxml"));
+			StartManagerApp.getRoot().setCenter(login);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 
 	@FXML
-	private void employeesScreen() {
-		BorderPane employeesScreen = new BorderPane();
-		AnchorPane leftCenterScreen = new AnchorPane();
-		try {
-			leftCenterScreen = FXMLLoader.load(getClass().getResource("/restaurant/view/manager/ActionEmployee.fxml"));
+	private void setEmployeesScreen() {
+	}
 
-			EmployeesScreen gridPane = new EmployeesScreen();
+	@FXML
+	private void setActivityScreen() {
+	}
 
-			employeesScreen.setLeft(leftCenterScreen);
-			employeesScreen.setCenter(gridPane);
+	@FXML
+	private void setProductsScreen() {
+	}
 
-			MainManager.managerRoot.getChildren().setAll(employeesScreen);
+	@FXML
+	private void setOrdersScreen() {
+	}
 
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+	@FXML
+	private void setPrivacyScreen() {
 	}
 
 }
