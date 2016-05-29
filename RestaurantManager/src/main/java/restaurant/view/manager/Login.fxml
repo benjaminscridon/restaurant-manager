@@ -14,35 +14,33 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity"
 	minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0"
 	prefWidth="950.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1"
-	fx:controller="restaurant.view.manager.LoginController">
+	fx:controller="restaurant.controller.manager.LoginController">
 	<children>
 		<ImageView fx:id="image" fitHeight="700.0" fitWidth="960.0"
 			layoutX="-4.0" pickOnBounds="true" smooth="false">
 			<image>
 				<Image url="@../../../../resources/background_restaurant.jpg" />
 			</image>
-			<effect>
-				<BoxBlur height="0.0" width="0.0" />
-			</effect>
 
 		</ImageView>
 		<Button layoutX="371.0" layoutY="362.0" mnemonicParsing="false"
-			prefHeight="35.0" prefWidth="227.0" stylesheets="@../../../../resources/application.css"
-			text="Login" textFill="WHITE">
+			onAction="#login" prefHeight="35.0" prefWidth="227.0"
+			stylesheets="@../../../../resources/manager.css" text="Login"
+			textFill="WHITE">
 			<font>
 				<Font size="15.0" />
 			</font>
 		</Button>
 		<TextField alignment="CENTER" layoutX="371.0" layoutY="255.0"
 			prefHeight="35.0" prefWidth="227.0" promptText="manager_no"
-			styleClass="text-field" stylesheets="@../../../../resources/application.css">
+			styleClass="text-field" stylesheets="@../../../../resources/manager.css">
 			<font>
 				<Font size="15.0" />
 			</font>
 		</TextField>
 		<PasswordField alignment="CENTER" layoutX="372.0"
 			layoutY="308.0" prefHeight="35.0" prefWidth="227.0" promptText="password"
-			styleClass="text-field" stylesheets="@../../../../resources/application.css">
+			styleClass="text-field" stylesheets="@../../../../resources/manager.css">
 			<font>
 				<Font size="15.0" />
 			</font>
@@ -58,6 +56,14 @@
 			prefWidth="101.0" text="Welcome" textFill="#da920191">
 			<font>
 				<Font name="Forte" size="26.0" />
+			</font>
+		</Label>
+		<Label fx:id="message" alignment="CENTER" layoutX="372.0"
+			layoutY="413.0" opacity="0.76" prefHeight="24.0" prefWidth="227.0"
+			text="Please insert all required fields." textFill="#ff2b4b"
+			textOverrun="CLIP">
+			<font>
+				<Font size="15.0" />
 			</font>
 		</Label>
 	</children>
