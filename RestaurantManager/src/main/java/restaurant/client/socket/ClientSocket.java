@@ -8,7 +8,7 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 
 public class ClientSocket {
-	
+
 	private String hostname;
 	private int port;
 	Socket socketClient;
@@ -24,6 +24,15 @@ public class ClientSocket {
 		System.out.println("connection established");
 	}
 
+	public void closeConnection() throws IOException {
+		try {
+			if (socketClient != null)
+				socketClient.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
 	public void readResponse() throws IOException {
 		String userInput;
 		BufferedReader stdIn = new BufferedReader(new InputStreamReader(socketClient.getInputStream()));
@@ -35,18 +44,16 @@ public class ClientSocket {
 		}
 	}
 
-	public void closeConnection() throws IOException {
-		try {
-			if (socketClient != null)
-				socketClient.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-
 	public void writeMessage(String s) throws IOException {
 		ObjectOutputStream output = new ObjectOutputStream(socketClient.getOutputStream());
 		output.writeObject(new String(s));
+	}
+
+	public String readMessage() throws IOException, ClassNotFoundException {
+		ObjectInputStream inStream = null;
+		inStream = new ObjectInputStream(socketClient.getInputStream());
+		String string = (String) inStream.readObject();
+		return string;
 	}
 
 	public void writeObject(Object obj, String s) throws IOException {
