@@ -7,16 +7,16 @@ import java.io.ObjectOutputStream;
 import java.io.OutputStreamWriter;
 import java.net.Socket;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
 import restaurant.controller.common.MapperController;
 import restaurant.server.model.Employee;
-
-//import com.google.gson.Gson;
 public class RestaurantServer implements Runnable {
+	private Gson gson = new Gson();
 	private Socket connection;
 	@SuppressWarnings("unused")
 	private int port;
-	// private Gson gson = new Gson();
-
 	public RestaurantServer(Socket connection, int port) {
 		this.connection = connection;
 		this.port = port;
@@ -51,10 +51,12 @@ public class RestaurantServer implements Runnable {
 			}
 			if (foundUser == true) {
 				Employee employeeOutput = MapperController.getEmployeeMapper().find(Integer.parseInt(employeeInfo[0]));
-				writeObject(client, employeeOutput);
+				String jsonManagerLogin = gson.toJson(employeeOutput);
+				writeObject(client, jsonManagerLogin);
 			} else {
 				Employee employeeOutput = new Employee();
-				writeObject(client, employeeOutput);
+				String jsonManagerLogin = gson.toJson(employeeOutput);
+				writeObject(client, jsonManagerLogin);
 			}
 			connection.close();
 		}
