@@ -1,4 +1,4 @@
-package restaurant.server.socket;
+package restaurant.server;
 
 import java.io.BufferedWriter;
 import java.io.IOException;

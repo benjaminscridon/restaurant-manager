@@ -1,4 +1,4 @@
-package restaurant.server.socket;
+package restaurant.server;
 
 import java.io.IOException;
 import java.net.ServerSocket;
