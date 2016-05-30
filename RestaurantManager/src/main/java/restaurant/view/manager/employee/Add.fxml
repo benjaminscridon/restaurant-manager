@@ -97,15 +97,15 @@
 			layoutY="228.0" prefHeight="37.0" prefWidth="248.0" promptText="status"
 			styleClass="combo-box" stylesheets="@../../../../../resources/manager.css" />
 		<Label fx:id="message" layoutX="146.0" layoutY="629.0"
-			prefHeight="39.0" prefWidth="665.0" text="Please complete all fields . Error ..."
+			prefHeight="39.0" prefWidth="781.0" text="Please complete all fields . Error ..."
 			textFill="#fc4242">
 			<font>
 				<Font size="16.0" />
 			</font>
 		</Label>
-		<ImageView fx:id="picture" fitHeight="325.0" fitWidth="326.0"
-			layoutX="467.0" layoutY="117.0" pickOnBounds="true" preserveRatio="true" />
-		<Button layoutX="564.0" layoutY="457.0" mnemonicParsing="false"
+		<ImageView fx:id="picture" fitHeight="300.0" fitWidth="300.0"
+			layoutX="470.0" layoutY="133.0" pickOnBounds="true" preserveRatio="true" />
+		<Button layoutX="546.0" layoutY="446.0" mnemonicParsing="false"
 			onAction="#uploadPicture" prefHeight="16.0" prefWidth="149.0"
 			styleClass="buttonBlue" stylesheets="@../../../../../resources/manager.css"
 			text="Upload picture">

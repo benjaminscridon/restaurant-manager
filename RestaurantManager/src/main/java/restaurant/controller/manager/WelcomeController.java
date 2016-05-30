@@ -52,7 +52,13 @@ public class WelcomeController implements Initializable {
 	}
 
 	@FXML
-	private void setProductsScreen() {
+	private void toProducts() {
+		try {
+			AnchorPane productsScreen = FXMLLoader.load(getClass().getResource("/restaurant/view/manager/product/Products.fxml"));
+			StartManagerApp.getRoot().setCenter(productsScreen);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@FXML

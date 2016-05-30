@@ -7,7 +7,6 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 import javax.imageio.ImageIO;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.embed.swing.SwingFXUtils;
@@ -30,61 +29,52 @@ import restaurant.controller.common.validator.PasswordValidator;
 import restaurant.controller.manager.StartManagerApp;
 import restaurant.server.model.Employee;
 
+/**
+ * 
+ * @author Beniamin
+ *
+ */
 public class AddEmployeeController implements Initializable {
 
-	@FXML
-	private TextField passwordField;
-	@FXML
-	private TextField confirmPassField;
-	@FXML
-	private TextField nameField;
-	@FXML
-	private TextField addressField;
-	@FXML
-	private TextField emailField;
-	@FXML
-	private TextField mobileField;
-	@FXML
-	private ComboBox<String> statusField;
-
-	@FXML
-	private DatePicker birthdateField;
-	@FXML
-	private ImageView picture;
-	@FXML
-	private ImageView image;
-	@FXML
-	private Label message;
-
-	private File file;
+	@FXML private TextField passwordField;
+	@FXML private TextField confirmPassField;
+	@FXML private TextField nameField;
+	@FXML private TextField addressField;
+	@FXML private TextField emailField;
+	@FXML private TextField mobileField;
+	@FXML private ComboBox<String> statusField;
+    @FXML private DatePicker birthdateField;
+	@FXML private ImageView picture;
+	@FXML private ImageView image;
+	@FXML private Label message;
+    private File file;
 
 	public void initialize(URL location, ResourceBundle resources) {
 		message.setText("");
 
 		Image img_background = new Image("/background_restaurant.jpg");
 		image.setImage(img_background);
-		
+
 		Image img = new Image(getClass().getResourceAsStream("/initialPicture.png"));
 		picture.setImage(img);
 
-		
-		
-		
 		ObservableList<String> options;
 		options = FXCollections.observableArrayList("manager", "waiter", "kitchen");
 		statusField.setItems(options);
 	}
+
 	@FXML
 	private void back() {
 		try {
-			AnchorPane employeesScreen = FXMLLoader.load(getClass().getResource("/restaurant/view/manager/employee/Employees.fxml"));
+			AnchorPane employeesScreen = FXMLLoader
+					.load(getClass().getResource("/restaurant/view/manager/employee/Employees.fxml"));
 			StartManagerApp.getRoot().setCenter(employeesScreen);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
-	
-	@FXML 
+
+	@FXML
 	private void toHome() {
 		try {
 			AnchorPane activityScreen = FXMLLoader
@@ -145,6 +135,7 @@ public class AddEmployeeController implements Initializable {
 			message.setText("Please complete all fields.");
 		} else if (validateMail(email) && validateMobile(mobile) && validatePassword(password, confirmPassword)) {
 
+			message.setText("");
 			Employee employee = new Employee();
 			employee.setAddress(address);
 			employee.setEmail(email);
@@ -159,13 +150,20 @@ public class AddEmployeeController implements Initializable {
 				file = new File("src/main/resources/initialPicture.png");
 			}
 			if (MapperController.getEmployeeMapper().insert(employee, file)) {
-				// change pannel
+				try {
+					AnchorPane newEmployee = FXMLLoader
+							.load(getClass().getResource("/restaurant/view/manager/employee/Add.fxml"));
+					StartManagerApp.getRoot().setCenter(newEmployee);
+					Label message1 = (Label) newEmployee.lookup("#message");
+					message1.setText("The employee has been added successfully.");
+
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			} else {
+				message.setText("There is an error... Please try again.");
 			}
-
-		} else {
-			message.setText("There is an error... Please try again.");
 		}
-
 	}
 
 	private boolean validateMail(String email) {
