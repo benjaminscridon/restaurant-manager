@@ -1,13 +1,10 @@
-package restaurant.controller.manager;
+package restaurant.controller.manager.employee;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.net.PasswordAuthentication;
 import java.net.URL;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.ResourceBundle;
 import javax.imageio.ImageIO;
 
@@ -15,6 +12,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -22,12 +20,14 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import restaurant.controller.common.MapperController;
 import restaurant.controller.common.validator.EmailValidator;
 import restaurant.controller.common.validator.FormValidator;
 import restaurant.controller.common.validator.MobileValidator;
 import restaurant.controller.common.validator.PasswordValidator;
+import restaurant.controller.manager.StartManagerApp;
 import restaurant.server.model.Employee;
 
 public class AddEmployeeController implements Initializable {
@@ -50,6 +50,8 @@ public class AddEmployeeController implements Initializable {
 	@FXML
 	private DatePicker birthdateField;
 	@FXML
+	private ImageView picture;
+	@FXML
 	private ImageView image;
 	@FXML
 	private Label message;
@@ -57,16 +59,41 @@ public class AddEmployeeController implements Initializable {
 	private File file;
 
 	public void initialize(URL location, ResourceBundle resources) {
-		message.setVisible(true);
 		message.setText("");
 
-		Image img = null;
-		img = new Image(getClass().getResourceAsStream("/initialPicture.png"));
-		image.setImage(img);
+		Image img_background = new Image("/background_restaurant.jpg");
+		image.setImage(img_background);
+		
+		Image img = new Image(getClass().getResourceAsStream("/initialPicture.png"));
+		picture.setImage(img);
 
+		
+		
+		
 		ObservableList<String> options;
 		options = FXCollections.observableArrayList("manager", "waiter", "kitchen");
 		statusField.setItems(options);
+	}
+	@FXML
+	private void back() {
+		try {
+			AnchorPane employeesScreen = FXMLLoader.load(getClass().getResource("/restaurant/view/manager/employee/Employees.fxml"));
+			StartManagerApp.getRoot().setCenter(employeesScreen);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@FXML 
+	private void toHome() {
+		try {
+			AnchorPane activityScreen = FXMLLoader
+					.load(getClass().getResource("/restaurant/view/manager/Welcome.fxml"));
+			StartManagerApp.getRoot().setCenter(activityScreen);
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@FXML
@@ -82,7 +109,7 @@ public class AddEmployeeController implements Initializable {
 			if (file != null) {
 				BufferedImage bufferedImage = ImageIO.read(file);
 				Image img = SwingFXUtils.toFXImage(bufferedImage, null);
-				image.setImage(img);
+				picture.setImage(img);
 			}
 		} catch (IOException ex) {
 			ex.printStackTrace();

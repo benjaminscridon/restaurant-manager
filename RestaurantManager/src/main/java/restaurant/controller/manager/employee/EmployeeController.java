@@ -1,4 +1,4 @@
-package restaurant.controller.manager;
+package restaurant.controller.manager.employee;
 
 import java.io.IOException;
 import java.net.URL;

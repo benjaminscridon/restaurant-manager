@@ -1,4 +1,4 @@
-package restaurant.view.manager;
+package restaurant.view.manager.employee;
 
 import java.io.IOException;
 import javafx.fxml.FXMLLoader;
@@ -7,11 +7,11 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 
-public class EmployeesScreen extends ScrollPane {
+public class Grid extends ScrollPane{
 
 	private GridPane gridPane;
 
-	public EmployeesScreen() throws IOException {
+	public Grid() throws IOException {
 		gridPane = new GridPane();
 		initializeGridPane();
 		generateCells();
@@ -19,8 +19,8 @@ public class EmployeesScreen extends ScrollPane {
 
 	public void initializeGridPane() {
 		gridPane = new GridPane();
-		//gridPane.setStyle(" -fx-border-color: #1a1a1a;");
-		//gridPane.setStyle(" -fx-border-color: #1a1a1a;");
+		// gridPane.setStyle(" -fx-border-color: #1a1a1a;");
+		// gridPane.setStyle(" -fx-border-color: #1a1a1a;");
 		gridPane.setTranslateX(4);
 		gridPane.setTranslateY(20);
 		gridPane.setHgap(25);
@@ -40,7 +40,7 @@ public class EmployeesScreen extends ScrollPane {
 		for (int i = 0; i < numRows; i++) {
 			for (int j = 0; j < numCols; j++) {
 
-				AnchorPane cell = FXMLLoader.load(getClass().getResource("/restaurant/view/manager/Employee.fxml"));
+				AnchorPane cell = FXMLLoader.load(getClass().getResource("/restaurant/view/manager/EmployeeCell.fxml"));
 
 				// Label lblNameConference = (Label)
 				// cell.lookup("#nameConference");
@@ -76,13 +76,13 @@ public class EmployeesScreen extends ScrollPane {
 			if (18 == counter)
 				break;
 		}
-
-		// setVisible(true);
-		this.setHbarPolicy(ScrollBarPolicy.NEVER);
-		this.setId("conferencesScroll");
-		this.getVbarPolicy().getClass();
-		this.setStyle("-fx-background: #1a1a1a;");
-		this.setContent(gridPane);
+	
+		  setVisible(true);
+		// this.setHbarPolicy(ScrollBarPolicy.NEVER);
+		 this.setId("conferencesScroll");
+		 this.getVbarPolicy().getClass();
+		 this.setStyle("-fx-background: #1a1a1a;");
+		 this.setContent(gridPane);
 		// this.getStylesheets().add(getClass().getResource("/application.css").toExternalForm());
 	}
 

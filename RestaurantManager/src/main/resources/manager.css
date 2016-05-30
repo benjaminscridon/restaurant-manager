@@ -25,5 +25,49 @@
 	-fx-background-color:black;
 	 -fx-border-color: gray;
 }
+.buttonBlue{
+	-fx-background-color:#002266;
+	-fx-text-fill:white;
+}
 
+.buttonBlue:hover{
+	-fx-background-color:#3377ff;
+	-fx-text-fill:white;
+}
+
+.buttonDelete{
+	-fx-background-color: #800000;
+	-fx-text-fill:#ffe6e6;
+	}
+.buttonDelete:hover{
+	-fx-background-color: #e60000;
+	-fx-text-fill:#ffe6e6;
+	}	
+
+.buttonGreen{
+	-fx-background-color: #00802b;
+	-fx-text-fill:white;
+	}
+.buttonGreen:hover{
+	-fx-background-color: #00cc44;
+	-fx-text-fill:white;
+	}	
+
+
+.combo-box  {
+	
+	-fx-alignment: right;
+	-fx-background-color: #1a1a1a;
+	-fx-text-fill:Red;
+    -fx-font: 16.0 arial;
+  	
+}
+
+.combo-box-popup .list-view .list-cell
+ {
+ 	 	-fx-alignment: center;
+-fx-background-color: #1a1a1a;
+-fx-text-fill: #9a9a9a;
+-fx-font-family: Oxygen Light;
+ }
  

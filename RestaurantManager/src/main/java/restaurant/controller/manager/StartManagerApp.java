@@ -30,6 +30,7 @@ public class StartManagerApp extends Application {
 		primaryStage.setScene(scene);
 		primaryStage.setOpacity(1.0);
 		primaryStage.setResizable(false);
+		primaryStage.setTitle("ManagerApp     @author Beniamin Scridon");
 		primaryStage.show();
 	}
 

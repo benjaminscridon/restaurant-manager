@@ -43,7 +43,7 @@ public class LoginController implements Initializable {
 		 */
 		try {
 			AnchorPane activityScreen = FXMLLoader
-					.load(getClass().getResource("/restaurant/view/manager/Activity.fxml"));
+					.load(getClass().getResource("/restaurant/view/manager/Welcome.fxml"));
 			StartManagerApp.getRoot().setCenter(activityScreen);
 
 		} catch (IOException e) {

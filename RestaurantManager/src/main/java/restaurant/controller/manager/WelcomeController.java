@@ -15,7 +15,7 @@ import javafx.scene.layout.AnchorPane;
  * @author Beniamin
  * @since 2016-05-29
  */
-public class ActivityController implements Initializable {
+public class WelcomeController implements Initializable {
 
 	@FXML
 	private ImageView image;
@@ -39,6 +39,12 @@ public class ActivityController implements Initializable {
 
 	@FXML
 	private void setEmployeesScreen() {
+		try {
+			AnchorPane employeesScreen = FXMLLoader.load(getClass().getResource("/restaurant/view/manager/employee/Employees.fxml"));
+			StartManagerApp.getRoot().setCenter(employeesScreen);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@FXML
