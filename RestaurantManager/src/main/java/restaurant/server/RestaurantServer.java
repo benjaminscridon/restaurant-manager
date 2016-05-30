@@ -7,6 +7,9 @@ import java.io.ObjectOutputStream;
 import java.io.OutputStreamWriter;
 import java.net.Socket;
 
+import restaurant.controller.common.MapperController;
+import restaurant.server.model.Employee;
+
 //import com.google.gson.Gson;
 public class RestaurantServer implements Runnable {
 	private Socket connection;
@@ -38,10 +41,23 @@ public class RestaurantServer implements Runnable {
 		switch (operation) {
 		case "login":
 			System.out.println("login");
+			String[] employeeInfo = (String[]) inStream.readObject();
+			boolean foundUser = false;
+			foundUser = MapperController.getEmployeeMapper().findEmployeeByIdAndPass(Integer.parseInt(employeeInfo[0]),
+					employeeInfo[1]);
+			try {
+				Thread.sleep(100);
+			} catch (Exception e) {
+			}
+			if (foundUser == true) {
+				Employee employeeOutput = MapperController.getEmployeeMapper().find(Integer.parseInt(employeeInfo[0]));
+				writeObject(client, employeeOutput);
+			} else {
+				Employee employeeOutput = new Employee();
+				writeObject(client, employeeOutput);
+			}
 			connection.close();
-			break;
 		}
-
 	}
 
 	@SuppressWarnings("unused")

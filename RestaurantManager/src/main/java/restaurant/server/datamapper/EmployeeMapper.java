@@ -186,6 +186,28 @@ public class EmployeeMapper {
 		return bool;
 	}
 	
+	public boolean findEmployeeByIdAndPass(int employee_no, String pass) {
+		boolean bool = false;
+		try {
+			String statement = "SELECT * FROM employee where employee_no=? and password=?";
+			PreparedStatement dbStatement = (PreparedStatement) DBConnection.getConnection()
+					.prepareStatement(statement);
+			dbStatement.setInt(1, employee_no);
+			dbStatement.setString(2, pass);
+			ResultSet rs = dbStatement.executeQuery();
+			while (rs.next()) {
+				int employee_id = rs.getInt("employee_no");
+				if (employee_id != 0) {
+					bool = true;
+				}
+			}
+			return bool;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return bool;
+	}
+	
 
 	public ArrayList<Employee> findALL() {
 		ArrayList<Employee> employees = new ArrayList<Employee>();
