@@ -18,4 +18,9 @@ public class SessionManager {
 	public static Employee getCurrentEmployee() {
 		return currentEmployee;
 	}
+
+	public static void setCurrentEmployee(Employee employee) {
+		currentEmployee = employee;
+	}
+
 }

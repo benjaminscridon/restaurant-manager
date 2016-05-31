@@ -1,6 +1,11 @@
 package restaurant.controller.manager;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.Socket;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -8,9 +13,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import restaurant.client.ClientSocket;
+import restaurant.server.model.Employee;
 
 /**
  * 
@@ -23,8 +31,8 @@ public class LoginController implements Initializable {
 	private ImageView image;
 	@FXML
 	private Label message;
-	private String managerNo;
-	private String password;
+	private TextField managerNo;
+	private TextField password;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -37,19 +45,34 @@ public class LoginController implements Initializable {
 	@FXML
 	private void login() {
 		message.setText("");
+
+		String username = managerNo.getText();
+		String pass = password.getText();
 		/**
 		 * 1. apelez functia validate Daca returneaza true, atunci schimb
 		 * panelul si specific userul, in SessionManager
 		 */
+
+		String[] info = { username, pass };
+		String request = "common-login";
+
 		try {
+			ClientSocket client = new ClientSocket(StartManagerApp.getDefaultServer(),
+					StartManagerApp.getDefaultPort());
+			client.connect();
+			client.writeObject(info, request);
+
+			Employee currentEmployee = (Employee) client.readObject();
+			SessionManager.setCurrentEmployee(currentEmployee);
+			client.closeConnection();
+
 			AnchorPane activityScreen = FXMLLoader
 					.load(getClass().getResource("/restaurant/view/manager/Welcome.fxml"));
 			StartManagerApp.getRoot().setCenter(activityScreen);
 
-		} catch (IOException e) {
+		} catch (IOException | ClassNotFoundException e) {
 			e.printStackTrace();
 		}
-
 	}
 
 	private boolean validate() {

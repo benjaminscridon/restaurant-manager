@@ -15,6 +15,8 @@ import javafx.stage.Stage;
  */
 public class StartManagerApp extends Application {
 
+	private static final String DEFAULT_SERVER="localhost";
+	private static final int DEFAULT_PORT=667;
 	private static BorderPane root;
 
 	@Override
@@ -44,5 +46,13 @@ public class StartManagerApp extends Application {
 
 	public static void setRoot(BorderPane pane) {
 		root = pane;
+	}
+
+	public static int getDefaultPort() {
+		return DEFAULT_PORT;
+	}
+
+	public static String getDefaultServer() {
+		return DEFAULT_SERVER;
 	}
 }
