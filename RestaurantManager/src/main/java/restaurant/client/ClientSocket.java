@@ -22,14 +22,14 @@ public class ClientSocket {
 
 	public void connect() {
 
-			try {
-				socketClient = new Socket(hostname, port);
-			} catch (IOException e) {
-				e.printStackTrace();
-				JOptionPane.showMessageDialog(null, "The server is not running.");
-			}
-		
+		try {
+			socketClient = new Socket(hostname, port);
+		} catch (IOException e) {
+			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, "The server is not running.");
 		}
+
+	}
 
 	public void closeConnection() throws IOException {
 		try {
