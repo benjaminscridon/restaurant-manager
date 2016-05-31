@@ -8,7 +8,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
-public class StartWaiterApp extends Application{
+public class StartWaiterApp extends Application {
 
 	private static BorderPane root;
 
@@ -20,7 +20,7 @@ public class StartWaiterApp extends Application{
 		root.setCenter(login);
 
 		Scene scene = new Scene(root, 950, 700);
-		scene.getStylesheets().add(getClass().getResource("/manager.css").toExternalForm());
+		scene.getStylesheets().add(getClass().getResource("/waiter.css").toExternalForm());
 		primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/waiter.png")));
 		primaryStage.setScene(scene);
 		primaryStage.setOpacity(1.0);
@@ -31,6 +31,10 @@ public class StartWaiterApp extends Application{
 
 	public static BorderPane getRoot() {
 		return root;
+	}
+
+	public static void setRoot(BorderPane pane) {
+		root = pane;
 	}
 
 	public static void main(String[] args) {

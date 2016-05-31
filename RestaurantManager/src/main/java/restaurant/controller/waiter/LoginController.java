@@ -10,6 +10,8 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
+import restaurant.controller.manager.StartManagerApp;
 
 public class LoginController implements Initializable {
 
@@ -26,6 +28,7 @@ public class LoginController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		message.setText("");
 		Image img = new Image("/waiterImg1.jpg");
 		image1.setImage(img);
 		
@@ -40,7 +43,15 @@ public class LoginController implements Initializable {
 		 * 1. apelez functia validate Daca returneaza true, atunci schimb
 		 * panelul si specific userul, in SessionManager
 		 */
-		
+		try {
+			BorderPane home = FXMLLoader
+					.load(getClass().getResource("/restaurant/view/waiter/Home.fxml"));
+			StartWaiterApp.getRoot().setCenter(home);
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
 
 	}
 

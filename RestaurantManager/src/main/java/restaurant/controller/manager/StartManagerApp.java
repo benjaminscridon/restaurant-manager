@@ -41,4 +41,8 @@ public class StartManagerApp extends Application {
 	public static void main(String[] args) {
 		launch(args);
 	}
+
+	public static void setRoot(BorderPane pane) {
+		root = pane;
+	}
 }

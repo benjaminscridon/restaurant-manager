@@ -1,0 +1,49 @@
+.buttonBlueLight {
+	-fx-background-color: #10A8AB;
+	fx-text-fill: White;
+}
+
+.buttonBlueLight:hover{
+	-fx-background-color:#14cfd2;
+}
+
+
+.buttonRed {
+	-fx-background-color:  #CC324C;
+	fx-text-fill: White;
+}
+
+.buttonRed:hover{
+	-fx-background-color:#E84C62;
+}
+
+
+.buttonBlue {
+	-fx-background-color:  #20243F;
+	fx-text-fill: White;
+	
+}
+
+.buttonBlue2 {
+	-fx-background-color:  #394263;
+	fx-text-fill: White;
+	
+}
+
+
+.text-fieldNormal {
+-fx-background-color: #1a1a1a;
+-fx-text-fill: White;
+
+}
+
+.buttonPink {
+	-fx-background-color: #FF2B4B;
+}
+
+.buttonPink:hover{
+	-fx-background-color:#ff8093;
+}
+.buttonPink:selected {
+    -fx-background-color: Green;
+}
