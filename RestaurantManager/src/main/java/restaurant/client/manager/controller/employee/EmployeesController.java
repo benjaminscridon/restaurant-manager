@@ -32,7 +32,7 @@ public class EmployeesController implements Initializable {
 	@FXML
 	private void back() {
 		try {
-			AnchorPane welcome = FXMLLoader.load(getClass().getResource("/restaurant/view/manager/Welcome.fxml"));
+			AnchorPane welcome = FXMLLoader.load(getClass().getResource("/restaurant/client/manager/view/Welcome.fxml"));
 			ManagerMain.getRoot().setCenter(welcome);
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -42,7 +42,7 @@ public class EmployeesController implements Initializable {
 	@FXML
 	private void addEmployee() {
 		try {
-			AnchorPane newEmployee = FXMLLoader.load(getClass().getResource("/restaurant/view/manager/employee/Add.fxml"));
+			AnchorPane newEmployee = FXMLLoader.load(getClass().getResource("/restaurant/client/manager/view/employee/Add.fxml"));
 			ManagerMain.getRoot().setCenter(newEmployee);
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -81,7 +81,7 @@ public class EmployeesController implements Initializable {
 			for (int j = 0; j < numCols; j++) {
 
 				AnchorPane cell = FXMLLoader
-						.load(getClass().getResource("/restaurant/view/manager/employee/Cell.fxml"));
+						.load(getClass().getResource("/restaurant/client/manager/view/employee/Cell.fxml"));
 				grid.add(cell, j, i);
 
 				counter++;
