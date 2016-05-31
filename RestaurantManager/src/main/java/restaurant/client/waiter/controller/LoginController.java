@@ -12,7 +12,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import restaurant.client.manager.ManagerMain;
-import restaurant.client.waiter.StartWaiterApp;
+import restaurant.client.waiter.WaiterMain;
 
 public class LoginController implements Initializable {
 
@@ -30,10 +30,10 @@ public class LoginController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		message.setText("");
-		Image img = new Image("/waiterImg1.jpg");
+		Image img = new Image("/waiter/background_1.jpg");
 		image1.setImage(img);
 		
-		Image img2 = new Image("/waiterImg2.jpg");
+		Image img2 = new Image("/waiter/background_2.jpg");
 		image2.setImage(img2);
 	}
 
@@ -46,8 +46,8 @@ public class LoginController implements Initializable {
 		 */
 		try {
 			BorderPane home = FXMLLoader
-					.load(getClass().getResource("/restaurant/client/manager/view/Home.fxml"));
-			StartWaiterApp.getRoot().setCenter(home);
+					.load(getClass().getResource("/restaurant/client/waiter/view/Home.fxml"));
+			WaiterMain.getRoot().setCenter(home);
 
 		} catch (IOException e) {
 			e.printStackTrace();
