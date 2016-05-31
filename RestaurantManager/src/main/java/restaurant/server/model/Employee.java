@@ -1,9 +1,14 @@
 package restaurant.server.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Employee {
+public class Employee implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4323977671882800344L;
 	private int employee_no;
 	private String password;
 	private String job_title;

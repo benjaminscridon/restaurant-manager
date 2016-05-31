@@ -6,7 +6,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import restaurant.server.controller.CommonController;
 
-public class RestaurantServer implements Runnable {
+public class RestaurantServer extends Thread {
 
 	private ServerSocket serverSocket;
 	private Socket clientSocket;
@@ -21,31 +21,32 @@ public class RestaurantServer implements Runnable {
 
 	@Override
 	public void run() {
-
-		try {
-			while (true) {
+		while (true) {
+			System.out.println("Da ma?");
+			try {
 				clientSocket = serverSocket.accept();
+				System.out.println("A trecut bai");
 				processingRequest();
-			}
-		} catch (IOException ex) {
-			ex.printStackTrace();
-		}
 
+			} catch (IOException ex) {
+				ex.printStackTrace();
+			}
+		}
 	}
 
 	public void processingRequest() {
-
+		System.out.println("pROCESSING rEQUETS");
 		try {
 			ObjectInputStream inStream = new ObjectInputStream(clientSocket.getInputStream());
 			String operation = inStream.readObject().toString();
 
 			int flag = operation.indexOf('-');
 			String operationType = operation.substring(0, flag);
-
+System.out.println("ope "+operation+"   type "+operationType);
 			switch (operationType) {
 			case "common":
 				CommonController common = new CommonController(inStream, clientSocket);
-				common.processingRequest();
+				common.processingRequest(operation);
 				break;
 			case "manager":
 				break;
@@ -53,7 +54,7 @@ public class RestaurantServer implements Runnable {
 				break;
 			case "kitchen":
 				break;
-			default:
+			default:System.out.println("Nothing");
 				break;
 			}
 		} catch (IOException | ClassNotFoundException e) {
@@ -61,18 +62,21 @@ public class RestaurantServer implements Runnable {
 		}
 	}
 
-//	private void sendMessage(Socket client, String message) throws IOException {
-//
-//		BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(client.getOutputStream()));
-//		writer.write(message);
-//		writer.flush();
-//	}
-//
-//	public void writeObject(Socket client, Object obj) throws IOException {
-//
-//		ObjectOutputStream output = new ObjectOutputStream(clientSocket.getOutputStream());
-//		output.writeObject(obj);
-//		output.flush();
-//
-//	}
+	// private void sendMessage(Socket client, String message) throws
+	// IOException {
+	//
+	// BufferedWriter writer = new BufferedWriter(new
+	// OutputStreamWriter(client.getOutputStream()));
+	// writer.write(message);
+	// writer.flush();
+	// }
+	//
+	// public void writeObject(Socket client, Object obj) throws IOException {
+	//
+	// ObjectOutputStream output = new
+	// ObjectOutputStream(clientSocket.getOutputStream());
+	// output.writeObject(obj);
+	// output.flush();
+	//
+	// }
 }

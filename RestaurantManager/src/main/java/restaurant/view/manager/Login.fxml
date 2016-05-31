@@ -24,12 +24,12 @@
 					<Font size="15.0" />
 				</font>
 			</Button>
-			<TextField alignment="CENTER" layoutX="371.0" layoutY="255.0" prefHeight="35.0" prefWidth="227.0" promptText="manager_no" styleClass="text-field" stylesheets="@../../../../resources/manager.css">
+			<TextField fx:id="managerNo" alignment="CENTER" layoutX="371.0" layoutY="255.0" prefHeight="35.0" prefWidth="227.0" promptText="manager_no" styleClass="text-field" stylesheets="@../../../../resources/manager.css">
 				<font>
 					<Font size="15.0" />
 				</font>
 			</TextField>
-			<PasswordField alignment="CENTER" layoutX="372.0" layoutY="308.0" prefHeight="35.0" prefWidth="227.0" promptText="password" styleClass="text-field" stylesheets="@../../../../resources/manager.css">
+			<PasswordField fx:id="password" alignment="CENTER" layoutX="372.0" layoutY="308.0" prefHeight="35.0" prefWidth="227.0" promptText="password" styleClass="text-field" stylesheets="@../../../../resources/manager.css">
 				<font>
 					<Font size="15.0" />
 				</font>

@@ -7,6 +7,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
+import javax.swing.JOptionPane;
+
 public class ClientSocket {
 
 	private String hostname;
@@ -18,11 +20,16 @@ public class ClientSocket {
 		this.port = port;
 	}
 
-	public void connect() throws IOException {
-		System.out.println("Attepmting to connect to " + hostname + ": " + port);
-		socketClient = new Socket(hostname, port);
-		System.out.println("connection established");
-	}
+	public void connect() {
+
+			try {
+				socketClient = new Socket(hostname, port);
+			} catch (IOException e) {
+				e.printStackTrace();
+				JOptionPane.showMessageDialog(null, "The server is not running.");
+			}
+		
+		}
 
 	public void closeConnection() throws IOException {
 		try {
@@ -56,11 +63,14 @@ public class ClientSocket {
 		return string;
 	}
 
-	public void writeObject(Object obj, String s) throws IOException {
-		ObjectOutputStream output = new ObjectOutputStream(socketClient.getOutputStream());
-		output.writeObject(new String(s));
-		output.writeObject(obj);
-
+	public void writeObject(Object obj, String s) {
+		try {
+			ObjectOutputStream output = new ObjectOutputStream(socketClient.getOutputStream());
+			output.writeObject(new String(s));
+			output.writeObject(obj);
+		} catch (Exception exc) {
+			exc.printStackTrace();
+		}
 	}
 
 	public Object readObject() throws IOException, ClassNotFoundException {
