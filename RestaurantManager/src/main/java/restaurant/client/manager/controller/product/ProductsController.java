@@ -89,7 +89,7 @@ public class ProductsController implements Initializable {
 			for (int j = 0; j < numCols; j++) {
 
 				AnchorPane cell = FXMLLoader
-						.load(getClass().getResource("/restaurant/client/manager/view/product/Cell.fxml"));
+						.load(getClass().getResource("/restaurant/client/manager/view/product/ProductCell.fxml"));
 				grid.add(cell, j, i);
 
 				counter++;

@@ -12,10 +12,10 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import restaurant.client.ClientSocket;
-import restaurant.client.common.validator.FormValidator;
 import restaurant.client.manager.SessionManager;
 import restaurant.client.manager.ManagerMain;
 import restaurant.server.model.Employee;
+import restaurant.server.validator.FormValidator;
 
 /**
  * 
@@ -35,7 +35,8 @@ public class LoginController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		Image img = new Image("/background_restaurant.jpg");
+		Image img = null;
+		img = new Image(getClass().getResourceAsStream("/background_restaurant.jpg"));
 		if (img != null)
 			image.setImage(img);
 		message.setText("");

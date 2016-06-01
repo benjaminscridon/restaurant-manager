@@ -185,7 +185,7 @@ public class EmployeeMapper {
 		}
 		return bool;
 	}
-	
+
 	public boolean findEmployeeByIdAndPass(int employee_no, String pass) {
 		boolean bool = false;
 		try {
@@ -207,14 +207,14 @@ public class EmployeeMapper {
 		}
 		return bool;
 	}
-	
 
 	public ArrayList<Employee> findALL() {
 		ArrayList<Employee> employees = new ArrayList<Employee>();
 		try {
 			Employee e;
 			String statement = "SELECT * FROM employee";
-			PreparedStatement dbStatement = (PreparedStatement) DBConnection.getConnection().prepareStatement(statement);
+			PreparedStatement dbStatement = (PreparedStatement) DBConnection.getConnection()
+					.prepareStatement(statement);
 			ResultSet rs = dbStatement.executeQuery();
 			while (rs.next()) {
 				int employee_no = rs.getInt("employee_no");

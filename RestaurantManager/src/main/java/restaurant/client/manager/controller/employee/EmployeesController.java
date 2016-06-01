@@ -81,7 +81,7 @@ public class EmployeesController implements Initializable {
 			for (int j = 0; j < numCols; j++) {
 
 				AnchorPane cell = FXMLLoader
-						.load(getClass().getResource("/restaurant/client/manager/view/employee/Cell.fxml"));
+						.load(getClass().getResource("/restaurant/client/manager/view/employee/EmployeeCell.fxml"));
 				grid.add(cell, j, i);
 
 				counter++;

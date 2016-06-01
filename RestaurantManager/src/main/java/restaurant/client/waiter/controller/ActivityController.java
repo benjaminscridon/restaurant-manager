@@ -1,5 +1,6 @@
 package restaurant.client.waiter.controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -7,12 +8,15 @@ import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import restaurant.client.waiter.WaiterMain;
 
 /**
  * 
@@ -42,7 +46,7 @@ public class ActivityController implements Initializable {
 	@FXML
 	private ImageView cigaretteImg;
 	//
-	
+
 	@FXML
 	private ListView tablesList;
 	@FXML
@@ -66,11 +70,16 @@ public class ActivityController implements Initializable {
 		// ------------------------------------------------------------
 		tablesList.setPlaceholder(new Label("No Content In List"));
 		ArrayList<String> table = new ArrayList<>();
-		table.add("Table 1"); table.add("Table 4");
-		table.add("Table 2"); table.add("Table 5");
-		table.add("Table 3"); table.add("Table 6");
-		table.add("Table 7"); table.add("Table 8");
-		table.add("Table 9"); table.add("Table 10");
+		table.add("Table 1");
+		table.add("Table 4");
+		table.add("Table 2");
+		table.add("Table 5");
+		table.add("Table 3");
+		table.add("Table 6");
+		table.add("Table 7");
+		table.add("Table 8");
+		table.add("Table 9");
+		table.add("Table 10");
 		for (String s : table)
 			tables.add(s);
 
@@ -78,9 +87,17 @@ public class ActivityController implements Initializable {
 		// ----------------------------------------------------------------
 		ObservableList<String> options = FXCollections.observableArrayList("Table 1", "Table 2", "Table 3");
 		tablesCb.setItems(options);
-		//-----------------------------------------------------------------------
+		// -----------------------------------------------------------------------
 
 	}
 
-
+	@FXML
+	private void logout() {
+		try {
+			AnchorPane login = FXMLLoader.load(getClass().getResource("/restaurant/client/waiter/view/Login.fxml"));
+			WaiterMain.getRoot().setCenter(login);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 }

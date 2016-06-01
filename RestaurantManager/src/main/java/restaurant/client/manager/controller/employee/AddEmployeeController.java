@@ -128,6 +128,12 @@ public class AddEmployeeController implements Initializable {
 			birthdate = selectedDate.toString();
 		}
 
+		String[] info = { password, confirmPassword, email, mobile,  };
+		String request = "common-login";
+		
+		
+		
+		
 		if (new FormValidator().validate(
 				new String[] { password, confirmPassword, status, email, mobile, name, address, birthdate }) == false) {
 			message.setText("Please complete all fields.");
@@ -143,7 +149,7 @@ public class AddEmployeeController implements Initializable {
 			employee.setPassword(confirmPassword);
 			employee.setHire_date(new java.sql.Date(System.currentTimeMillis()));
 			employee.setBirthdate(java.sql.Date.valueOf(date));
-
+	
 			if (file == null) {
 				file = new File("src/main/resources/initialPicture.png");
 			}

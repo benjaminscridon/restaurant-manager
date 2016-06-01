@@ -8,13 +8,14 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-public class CellController implements Initializable {
+public class ProductCellController implements Initializable {
 
 	@FXML
 	private ImageView image;
 	@FXML
 	private Label info;
 
+	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		Image img = null;
 		img = new Image(getClass().getResourceAsStream("/foodDefault.jpg"));
