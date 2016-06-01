@@ -46,7 +46,7 @@ public class LoginController implements Initializable {
 		 */
 		try {
 			BorderPane home = FXMLLoader
-					.load(getClass().getResource("/restaurant/client/waiter/view/Home.fxml"));
+					.load(getClass().getResource("/restaurant/client/waiter/view/Activity.fxml"));
 			WaiterMain.getRoot().setCenter(home);
 
 		} catch (IOException e) {

@@ -1,3 +1,65 @@
+
+
+.list-view {
+  
+    -fx-background-color: #394263;
+    -fx-text-fill: white; /* 5 */
+    -fx-font: 18 arial;
+     -fx-alignment: center;
+     
+     
+}
+
+.list-view .scroll-bar:vertical{
+
+	    -fx-background-color:#394263;
+
+ 
+	}
+	
+.list-cell:filled{
+	  -fx-text-fill: white; 
+   -fx-background-color:#394263;
+     -fx-alignment: center;
+}
+.list-cell:filled:selected:focused {
+ -fx-background-color: #9ea6c7;
+    -fx-text-fill: black; 
+     -fx-alignment: center;
+}
+.list-cell:odd { -fx-background-color: #394263; /* 1 */ }
+.list-cell:even { -fx-background-color: #394263; /* for information */ }
+
+.combo-box
+ {
+ 	
+     -fx-background-color: #9ea6c7;
+    -fx-text-fill: black; 
+    -fx-font: 16 arial;
+     -fx-alignment: center;
+
+ }
+
+.combo-box-popup .list-view .list-cell
+ {
+
+-fx-text-fill: WHITE;
+-fx-background-color: #394263;
+ }
+
+
+
+.combo-box-popup .list-view .list-cell:filled:hover 
+{
+    -fx-background-color: #9ea6c7;
+    -fx-text-fill: -fx-text-inner-color;
+}
+
+
+
+
+
+
 .buttonBlueLight {
 	-fx-background-color: #10A8AB;
 	fx-text-fill: White;
@@ -30,6 +92,17 @@
 	
 }
 
+.buttonBlue2ndVersion {
+	-fx-background-color:  #394263;
+	fx-text-fill: White;
+	
+}
+
+.buttonBlue2ndVersion:hover{
+	-fx-background-color:  #546192;
+	fx-text-fill: White;
+	
+}
 
 .text-fieldNormal {
 -fx-background-color: #1a1a1a;

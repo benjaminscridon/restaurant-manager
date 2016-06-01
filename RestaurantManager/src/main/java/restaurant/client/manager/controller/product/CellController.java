@@ -17,7 +17,7 @@ public class CellController implements Initializable {
 
 	public void initialize(URL location, ResourceBundle resources) {
 		Image img = null;
-		img = new Image(getClass().getResourceAsStream("/initialPicture.png"));
+		img = new Image(getClass().getResourceAsStream("/foodDefault.jpg"));
 		image.setImage(img);
 	}
 	
