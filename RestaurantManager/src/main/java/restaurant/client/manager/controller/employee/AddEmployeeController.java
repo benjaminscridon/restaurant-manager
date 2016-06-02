@@ -21,11 +21,11 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
-import restaurant.client.common.validator.FormValidator;
-import restaurant.client.common.validator.MobileValidator;
-import restaurant.client.common.validator.PasswordValidator;
 import restaurant.client.manager.ManagerMain;
 import restaurant.server.model.Employee;
+import restaurant.server.validator.FormValidator;
+import restaurant.server.validator.MobileValidator;
+import restaurant.server.validator.PasswordValidator;
 
 /**
  * 
