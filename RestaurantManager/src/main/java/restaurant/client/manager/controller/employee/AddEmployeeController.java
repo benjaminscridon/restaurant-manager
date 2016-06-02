@@ -200,8 +200,9 @@ public class AddEmployeeController implements Initializable {
 	}
 
 	private boolean validatePassword(String password, String confirmPassword) {
+		message.setText("");
 		if (new PasswordValidator().validate(password) == false) {
-			message.setText("Password must contain upper and lower letter, digit, and special character.(minimum 8");
+			message.setText("Password must contain upper and lower letter, digit, and special character.");
 			return false;
 		} else if (password.equals(confirmPassword) == false) {
 			message.setText("Password does not match the confirm password.");
