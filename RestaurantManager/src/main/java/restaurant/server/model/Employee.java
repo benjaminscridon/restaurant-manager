@@ -1,9 +1,7 @@
 package restaurant.server.model;
-
 import java.io.Serializable;
 import java.util.Date;
-
-public class Employee implements Serializable{
+public class Employee implements Serializable {
 
 	/**
 	 * 
@@ -19,8 +17,7 @@ public class Employee implements Serializable{
 	private String mobile;
 	private Date hire_date;
 	private Date fire_date;
-
-
+	
 	public Employee(int employee_no, String password, String job_title, String name, Date birthdate, String address,
 			String email, String mobile, Date hire_date, Date fire_date) {
 		this.employee_no = employee_no;
@@ -34,10 +31,10 @@ public class Employee implements Serializable{
 		this.hire_date = hire_date;
 		this.fire_date = fire_date;
 	}
-	public Employee(){
-		
-	}
 
+	public Employee() {
+
+	}
 
 	public int getEmployee_no() {
 		return employee_no;

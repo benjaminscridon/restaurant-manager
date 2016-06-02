@@ -1,22 +1,21 @@
 package restaurant.server.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.ArrayList;
+
 import restaurant.server.model.Employee;
 
-/**
- * 
- * @author Beniamin
- *
- */
-public class CommonController {
+public class ManagerController {
 
+	@SuppressWarnings("unused")
 	private ObjectInputStream inStream;
 	private Socket clientSocket;
 
-	public CommonController(ObjectInputStream inStream, Socket clientSocket) {
+	public ManagerController(ObjectInputStream inStream, Socket clientSocket) {
 		this.inStream = inStream;
 		this.clientSocket = clientSocket;
 	}
@@ -24,8 +23,11 @@ public class CommonController {
 	public void processingRequest(String operation) {
 		System.out.println("operation " + operation);
 		switch (operation) {
-		case "common-login":
-			login();
+		case "manager-getEmployees":
+			getEmployees();
+			break;
+		case "manager-addEmployee":
+			addEmployees();
 			break;
 
 		default:
@@ -33,21 +35,22 @@ public class CommonController {
 		}
 	}
 
-	private void login() {
-		try {
-			String[] info = (String[]) inStream.readObject();
-			int username = Integer.parseInt(info[0].toString());
-			String password = info[1].toString();
-			if (MapperController.getEmployeeMapper().findEmployeeByIdAndPass(username, password)) {
-				Employee currentEmployee = MapperController.getEmployeeMapper().find(username);
-				sendResponse(currentEmployee);
-			} else {
-				sendResponse(new String("Invalid id or password."));
-			}
+	private void getEmployees() {
+		ArrayList<Employee> foundEmployees = MapperController.getEmployeeMapper().findALL();
+		sendResponse(foundEmployees);
+	}
 
-		} catch (ClassNotFoundException | IOException e) {
+	private void addEmployees() {
+		try {
+			Employee employee = (Employee) inStream.readObject();
+			File file = (File) inStream.readObject();
+			MapperController.getEmployeeMapper().insert(employee, file);
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
+
 	}
 
 	private void sendResponse(Object object) {
@@ -60,4 +63,5 @@ public class CommonController {
 		}
 
 	}
+
 }

@@ -5,6 +5,7 @@ import java.io.ObjectInputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import restaurant.server.controller.CommonController;
+import restaurant.server.controller.ManagerController;
 
 public class RestaurantServer extends Thread {
 
@@ -22,10 +23,8 @@ public class RestaurantServer extends Thread {
 	@Override
 	public void run() {
 		while (true) {
-			System.out.println("Da ma?");
 			try {
 				clientSocket = serverSocket.accept();
-				System.out.println("A trecut bai");
 				processingRequest();
 
 			} catch (IOException ex) {
@@ -35,26 +34,26 @@ public class RestaurantServer extends Thread {
 	}
 
 	public void processingRequest() {
-		System.out.println("pROCESSING rEQUETS");
 		try {
 			ObjectInputStream inStream = new ObjectInputStream(clientSocket.getInputStream());
 			String operation = inStream.readObject().toString();
 
 			int flag = operation.indexOf('-');
 			String operationType = operation.substring(0, flag);
-System.out.println("ope "+operation+"   type "+operationType);
 			switch (operationType) {
 			case "common":
 				CommonController common = new CommonController(inStream, clientSocket);
 				common.processingRequest(operation);
 				break;
 			case "manager":
+				ManagerController managerController = new ManagerController(inStream, clientSocket);
+				managerController.processingRequest(operation);
 				break;
 			case "waiter":
 				break;
 			case "kitchen":
 				break;
-			default:System.out.println("Nothing");
+			default:
 				break;
 			}
 		} catch (IOException | ClassNotFoundException e) {

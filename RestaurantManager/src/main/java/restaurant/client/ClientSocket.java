@@ -72,6 +72,17 @@ public class ClientSocket {
 			exc.printStackTrace();
 		}
 	}
+	
+	public void writeObjectAndFile(Object obj, Object obj1, String s) {
+		try {
+			ObjectOutputStream output = new ObjectOutputStream(socketClient.getOutputStream());
+			output.writeObject(new String(s));
+			output.writeObject(obj);
+			output.writeObject(obj1);
+		} catch (Exception exc) {
+			exc.printStackTrace();
+		}
+	}
 
 	public Object readObject() throws IOException, ClassNotFoundException {
 		ObjectInputStream inStream = null;

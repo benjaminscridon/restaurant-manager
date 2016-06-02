@@ -1,5 +1,4 @@
 package restaurant.server.datamapper;
-
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
@@ -237,9 +236,9 @@ public class EmployeeMapper {
 		return employees;
 	}
 
-	public void update(Employee e) {
+	public void update(Employee e, File filename) {
 		try {
-			String statement = "UPDATE employee SET password=?, job_title=?, name=?, birthdate=?, address=?, email=?, mobile=?, hire_date=?, fire_date=? where employee_no=?";
+			String statement = "UPDATE employee SET password=?, job_title=?, name=?, birthdate=?, address=?, email=?, mobile=?, hire_date=?, fire_date=?, image=? where employee_no=?";
 			PreparedStatement dbStatement = (PreparedStatement) DBConnection.getConnection()
 					.prepareStatement(statement);
 
@@ -252,7 +251,9 @@ public class EmployeeMapper {
 			dbStatement.setString(7, e.getMobile());
 			dbStatement.setDate(8, (Date) e.getHire_date());
 			dbStatement.setDate(9, (Date) e.getFire_date());
-			dbStatement.setInt(10, e.getEmployee_no());
+			FileInputStream fin = new FileInputStream(filename);
+			dbStatement.setBinaryStream(10, (InputStream) fin, (int) filename.length());
+			dbStatement.setInt(11, e.getEmployee_no());
 			dbStatement.executeUpdate();
 		} catch (Exception e1) {
 			e1.printStackTrace();
