@@ -21,6 +21,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
+import restaurant.client.ClientSocket;
 import restaurant.client.manager.ManagerMain;
 import restaurant.server.model.Employee;
 import restaurant.server.validator.FormValidator;
@@ -153,20 +154,16 @@ public class AddEmployeeController implements Initializable {
 			if (file == null) {
 				file = new File("src/main/resources/initialPicture.png");
 			}
-//			if (MapperController.getEmployeeMapper().insert(employee, file)) {
-//				try {
-//					AnchorPane newEmployee = FXMLLoader
-//							.load(getClass().getResource("/restaurant/view/manager/employee/Add.fxml"));
-//					ManagerMain.getRoot().setCenter(newEmployee);
-//					Label message1 = (Label) newEmployee.lookup("#message");
-//					message1.setText("The employee has been added successfully.");
-//
-//				} catch (IOException e) {
-//					e.printStackTrace();
-//				}
-//			} else {
-//				message.setText("There is an error... Please try again.");
-//			}
+			try {
+				String request1 = "manager-addEmployee";
+				ClientSocket client = new ClientSocket(ManagerMain.getDefaultServer(),
+						ManagerMain.getDefaultPort());
+				client.connect();
+				client.writeObjectAndFile(employee, file, request1);
+				client.closeConnection();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
