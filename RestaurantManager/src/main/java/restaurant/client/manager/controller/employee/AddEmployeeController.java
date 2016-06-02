@@ -23,10 +23,10 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import restaurant.client.ClientSocket;
 import restaurant.client.manager.ManagerMain;
+import restaurant.client.validator.FormValidator;
+import restaurant.client.validator.MobileValidator;
+import restaurant.client.validator.PasswordValidator;
 import restaurant.server.model.Employee;
-import restaurant.server.validator.FormValidator;
-import restaurant.server.validator.MobileValidator;
-import restaurant.server.validator.PasswordValidator;
 
 /**
  * 
@@ -154,12 +154,17 @@ public class AddEmployeeController implements Initializable {
 			if (file == null) {
 				file = new File("src/main/resources/initialPicture.png");
 			}
+			System.out.println("Aici sunt acum");
+			
 			try {
 				String request1 = "manager-addEmployee";
 				ClientSocket client = new ClientSocket(ManagerMain.getDefaultServer(),
 						ManagerMain.getDefaultPort());
+				System.out.println("Aici sunt acum 3333");
 				client.connect();
+				System.out.println("Aici sunt acum 44444");
 				client.writeObjectAndFile(employee, file, request1);
+				System.out.println("Aici sunt acum 555");
 				client.closeConnection();
 			} catch (IOException e) {
 				e.printStackTrace();

@@ -1,4 +1,4 @@
-package restaurant.server.validator;
+package restaurant.client.validator;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

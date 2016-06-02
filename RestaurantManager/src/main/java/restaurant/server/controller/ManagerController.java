@@ -41,10 +41,12 @@ public class ManagerController {
 	}
 
 	private void addEmployees() {
+		System.out.println("stepppul;90");
 		try {
 			Employee employee = (Employee) inStream.readObject();
 			File file = (File) inStream.readObject();
 			MapperController.getEmployeeMapper().insert(employee, file);
+			System.out.println("A mers");
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {

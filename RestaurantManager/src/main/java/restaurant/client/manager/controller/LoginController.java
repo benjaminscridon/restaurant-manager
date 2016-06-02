@@ -13,9 +13,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import restaurant.client.ClientSocket;
 import restaurant.client.manager.SessionManager;
+import restaurant.client.validator.FormValidator;
 import restaurant.client.manager.ManagerMain;
 import restaurant.server.model.Employee;
-import restaurant.server.validator.FormValidator;
 
 /**
  * 

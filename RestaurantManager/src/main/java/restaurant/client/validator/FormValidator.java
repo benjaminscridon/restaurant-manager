@@ -1,4 +1,4 @@
-package restaurant.server.validator;
+package restaurant.client.validator;
 
 public class FormValidator {
 

@@ -46,6 +46,7 @@ public class RestaurantServer extends Thread {
 				common.processingRequest(operation);
 				break;
 			case "manager":
+				System.out.println("stepul900000");
 				ManagerController managerController = new ManagerController(inStream, clientSocket);
 				managerController.processingRequest(operation);
 				break;
