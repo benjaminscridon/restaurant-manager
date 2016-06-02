@@ -46,7 +46,6 @@ public class RestaurantServer extends Thread {
 				common.processingRequest(operation);
 				break;
 			case "manager":
-				System.out.println("stepul900000");
 				ManagerController managerController = new ManagerController(inStream, clientSocket);
 				managerController.processingRequest(operation);
 				break;
@@ -61,22 +60,4 @@ public class RestaurantServer extends Thread {
 			e.printStackTrace();
 		}
 	}
-
-	// private void sendMessage(Socket client, String message) throws
-	// IOException {
-	//
-	// BufferedWriter writer = new BufferedWriter(new
-	// OutputStreamWriter(client.getOutputStream()));
-	// writer.write(message);
-	// writer.flush();
-	// }
-	//
-	// public void writeObject(Socket client, Object obj) throws IOException {
-	//
-	// ObjectOutputStream output = new
-	// ObjectOutputStream(clientSocket.getOutputStream());
-	// output.writeObject(obj);
-	// output.flush();
-	//
-	// }
 }

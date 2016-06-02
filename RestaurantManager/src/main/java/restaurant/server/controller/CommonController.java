@@ -22,7 +22,6 @@ public class CommonController {
 	}
 
 	public void processingRequest(String operation) {
-		System.out.println("operation " + operation);
 		switch (operation) {
 		case "common-login":
 			login();

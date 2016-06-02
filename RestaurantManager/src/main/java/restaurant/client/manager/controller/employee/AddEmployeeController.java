@@ -23,6 +23,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import restaurant.client.ClientSocket;
 import restaurant.client.manager.ManagerMain;
+import restaurant.client.validator.EmailValidator;
 import restaurant.client.validator.FormValidator;
 import restaurant.client.validator.MobileValidator;
 import restaurant.client.validator.PasswordValidator;
@@ -35,18 +36,29 @@ import restaurant.server.model.Employee;
  */
 public class AddEmployeeController implements Initializable {
 
-	@FXML private TextField passwordField;
-	@FXML private TextField confirmPassField;
-	@FXML private TextField nameField;
-	@FXML private TextField addressField;
-	@FXML private TextField emailField;
-	@FXML private TextField mobileField;
-	@FXML private ComboBox<String> statusField;
-    @FXML private DatePicker birthdateField;
-	@FXML private ImageView picture;
-	@FXML private ImageView image;
-	@FXML private Label message;
-    private File file;
+	@FXML
+	private TextField passwordField;
+	@FXML
+	private TextField confirmPassField;
+	@FXML
+	private TextField nameField;
+	@FXML
+	private TextField addressField;
+	@FXML
+	private TextField emailField;
+	@FXML
+	private TextField mobileField;
+	@FXML
+	private ComboBox<String> statusField;
+	@FXML
+	private DatePicker birthdateField;
+	@FXML
+	private ImageView picture;
+	@FXML
+	private ImageView image;
+	@FXML
+	private Label message;
+	private File file;
 
 	public void initialize(URL location, ResourceBundle resources) {
 		message.setText("");
@@ -129,18 +141,11 @@ public class AddEmployeeController implements Initializable {
 			birthdate = selectedDate.toString();
 		}
 
-		String[] info = { password, confirmPassword, email, mobile,  };
-		String request = "common-login";
-		
-		
-		
-		
 		if (new FormValidator().validate(
 				new String[] { password, confirmPassword, status, email, mobile, name, address, birthdate }) == false) {
 			message.setText("Please complete all fields.");
 		} else if (validateMail(email) && validateMobile(mobile) && validatePassword(password, confirmPassword)) {
 
-			message.setText("");
 			Employee employee = new Employee();
 			employee.setAddress(address);
 			employee.setEmail(email);
@@ -150,36 +155,39 @@ public class AddEmployeeController implements Initializable {
 			employee.setPassword(confirmPassword);
 			employee.setHire_date(new java.sql.Date(System.currentTimeMillis()));
 			employee.setBirthdate(java.sql.Date.valueOf(date));
-	
+
 			if (file == null) {
 				file = new File("src/main/resources/initialPicture.png");
 			}
-			System.out.println("Aici sunt acum");
-			
+
 			try {
+
 				String request1 = "manager-addEmployee";
-				ClientSocket client = new ClientSocket(ManagerMain.getDefaultServer(),
-						ManagerMain.getDefaultPort());
-				System.out.println("Aici sunt acum 3333");
+				ClientSocket client = new ClientSocket(ManagerMain.getDefaultServer(), ManagerMain.getDefaultPort());
 				client.connect();
-				System.out.println("Aici sunt acum 44444");
 				client.writeObjectAndFile(employee, file, request1);
-				System.out.println("Aici sunt acum 555");
+				String[] response = (String[]) client.readObject();
 				client.closeConnection();
-			} catch (IOException e) {
+				if (response[0].equals("true")) {
+					AnchorPane newEmployee = FXMLLoader
+							.load(getClass().getResource("/restaurant/client/manager/view/employee/Add.fxml"));
+					ManagerMain.getRoot().setCenter(newEmployee);
+					Label msg = (Label) newEmployee.lookup("#message");
+					msg.setText(response[1]);
+				}
+				message.setText(response[1]);
+
+			} catch (IOException | ClassNotFoundException e) {
 				e.printStackTrace();
 			}
 		}
 	}
 
 	private boolean validateMail(String email) {
-//		if (new EmailValidator().validate(email) == false) {
-//			message.setText("Invalid email.");
-//			return false;
-//		} else if (MapperController.getEmployeeMapper().findEmployeeByEmail(email) == true) {
-//			message.setText("The email address you entered is already in use.");
-//			return false;
-//		}
+		if (new EmailValidator().validate(email) == false) {
+			message.setText("Invalid email.");
+			return false;
+		}
 		return true;
 	}
 

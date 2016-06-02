@@ -11,17 +11,15 @@ import restaurant.server.model.Employee;
 
 public class ManagerController {
 
-	@SuppressWarnings("unused")
 	private ObjectInputStream inStream;
 	private Socket clientSocket;
 
-	public ManagerController(ObjectInputStream inStream, Socket clientSocket) {
+	public ManagerController(ObjectInputStream inStream,Socket clientSocket) {
 		this.inStream = inStream;
 		this.clientSocket = clientSocket;
 	}
 
 	public void processingRequest(String operation) {
-		System.out.println("operation " + operation);
 		switch (operation) {
 		case "manager-getEmployees":
 			getEmployees();
@@ -41,15 +39,16 @@ public class ManagerController {
 	}
 
 	private void addEmployees() {
-		System.out.println("stepppul;90");
 		try {
 			Employee employee = (Employee) inStream.readObject();
 			File file = (File) inStream.readObject();
-			MapperController.getEmployeeMapper().insert(employee, file);
-			System.out.println("A mers");
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
+			boolean bool = MapperController.getEmployeeMapper().insert(employee, file);
+			if(bool == true){
+				sendResponse(new String[]{"true","Employee successfully inserted !"});
+			}else{
+				sendResponse(new String[]{"false","The employee with this information already exists !"});
+			}
+		} catch (IOException | ClassNotFoundException e) {
 			e.printStackTrace();
 		}
 
