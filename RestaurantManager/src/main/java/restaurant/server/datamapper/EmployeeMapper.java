@@ -1,4 +1,5 @@
 package restaurant.server.datamapper;
+
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
@@ -42,26 +43,26 @@ public class EmployeeMapper {
 		return false;
 	}
 
-	public synchronized Image getImage(int id) throws Exception {
+	public synchronized ArrayList<Image> getAllImages() throws Exception {
 		PreparedStatement myStmt = null;
 		ResultSet myRs = null;
+		ArrayList<Image> images = new ArrayList<>();
 		try {
-			String selectSQL = "SELECT picture From usersdetails where idUser=?;";
+			String selectSQL = "SELECT image From restaurant.employee";
 			myStmt = (PreparedStatement) DBConnection.getConnection().prepareStatement(selectSQL);
-			myStmt.setInt(1, id);
 			myRs = myStmt.executeQuery();
 
-			byte[] bytes = null;
-			if (myRs.next()) {
+			while (myRs.next()) {
+				byte[] bytes = null;
 				bytes = myRs.getBytes(1);
+				if (bytes != null) {
+					InputStream is = new ByteArrayInputStream(bytes);
+					BufferedImage imag = ImageIO.read(is);
+					Image img = imag;
+					images.add(img);
+				}
 			}
-			if (bytes != null) {
-				InputStream is = new ByteArrayInputStream(bytes);
-				BufferedImage imag = ImageIO.read(is);
-				Image image = imag;
-				return image;
-			}
-
+			return images;
 		} catch (SQLException | IOException e) {
 			e.printStackTrace();
 		} finally {
