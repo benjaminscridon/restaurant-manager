@@ -1,12 +1,19 @@
 package restaurant.server.controller;
 
 import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.nio.ByteBuffer;
 import java.util.ArrayList;
+
+import javax.imageio.ImageIO;
+
+import javafx.embed.swing.SwingFXUtils;
 import restaurant.server.model.Employee;
 
 public class ManagerController {
@@ -27,7 +34,9 @@ public class ManagerController {
 		case "manager-addEmployee":
 			addEmployees();
 			break;
-
+		case "manager-getAllEmployeesImages":
+			getAllEmployeesImages();
+			break;
 		default:
 			break;
 		}
@@ -37,16 +46,38 @@ public class ManagerController {
 
 		try {
 			ArrayList<Employee> empl = MapperController.getEmployeeMapper().findALL();
-			Employee[] employees = empl.toArray(new Employee[empl.size()]);
+			sendResponse(empl);
 
-			ArrayList<Image> img = MapperController.getEmployeeMapper().getAllImages();
-			Image[] images = img.toArray(new Image[img.size()]);
-
-			sendResponse(employees);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
+	}
+	
+	private void getAllEmployeesImages(){
+		try{
+			ArrayList<BufferedImage> imgs=MapperController.getEmployeeMapper().getAllImages();
+			ArrayList<File> imageFiles=convertToFiles(imgs);
+			sendResponse(imageFiles);
+			
+		}catch(Exception ex){
+			ex.printStackTrace();
+		}
+	}
+
+	private ArrayList<File> convertToFiles(ArrayList<BufferedImage> imgs){
+		ArrayList<File> imageFiles=new ArrayList<>();
+		for(int i=0; i <= imgs.size(); i ++){
+			try{
+				File outputFile = new File("/image"+i+".jpg");
+				ImageIO.write(imgs.get(i), "jpg", outputFile);
+				outputFile.deleteOnExit();
+			imageFiles.add(outputFile);
+			}catch(IOException e){
+				e.printStackTrace();
+			}
+		}
+		return imageFiles;
 	}
 
 	private void addEmployees() {
