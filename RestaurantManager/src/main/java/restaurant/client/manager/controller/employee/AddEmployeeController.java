@@ -66,7 +66,7 @@ public class AddEmployeeController implements Initializable {
 		Image img_background = new Image("/background_restaurant.jpg");
 		image.setImage(img_background);
 
-		Image img = new Image(getClass().getResourceAsStream("/initialPicture.png"));
+		Image img = new Image(getClass().getResourceAsStream("/employee1.png"));
 		picture.setImage(img);
 
 		ObservableList<String> options;
@@ -140,7 +140,6 @@ public class AddEmployeeController implements Initializable {
 			selectedDate = java.sql.Date.valueOf(date);
 			birthdate = selectedDate.toString();
 		}
-
 		if (new FormValidator().validate(
 				new String[] { password, confirmPassword, status, email, mobile, name, address, birthdate }) == false) {
 			message.setText("Please complete all fields.");
@@ -155,14 +154,13 @@ public class AddEmployeeController implements Initializable {
 			employee.setPassword(confirmPassword);
 			employee.setHire_date(new java.sql.Date(System.currentTimeMillis()));
 			employee.setBirthdate(java.sql.Date.valueOf(date));
-
 			if (file == null) {
 				file = new File("src/main/resources/initialPicture.png");
 			}
 
 			try {
 
-				String request1 = "manager-addEmployee";
+				String request1 = "manager-employee-addEmployee";
 				ClientSocket client = new ClientSocket(ManagerMain.getDefaultServer(), ManagerMain.getDefaultPort());
 				client.connect();
 				client.writeObjectAndFile(employee, file, request1);

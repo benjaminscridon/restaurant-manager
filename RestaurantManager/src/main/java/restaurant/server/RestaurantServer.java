@@ -4,8 +4,10 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
+
 import restaurant.server.controller.CommonController;
-import restaurant.server.controller.ManagerController;
+import restaurant.server.controller.manager.ManagerController;
 
 public class RestaurantServer extends Thread {
 
@@ -38,16 +40,15 @@ public class RestaurantServer extends Thread {
 			ObjectInputStream inStream = new ObjectInputStream(clientSocket.getInputStream());
 			String operation = inStream.readObject().toString();
 
-			int flag = operation.indexOf('-');
-			String operationType = operation.substring(0, flag);
-			switch (operationType) {
+			String[] operationType = operation.split("-");
+			switch (operationType[0]) {
 			case "common":
 				CommonController common = new CommonController(inStream, clientSocket);
-				common.processingRequest(operation);
+				common.processingRequest(operationType);
 				break;
 			case "manager":
 				ManagerController managerController = new ManagerController(inStream, clientSocket);
-				managerController.processingRequest(operation);
+				managerController.processingRequest(operationType);
 				break;
 			case "waiter":
 				break;

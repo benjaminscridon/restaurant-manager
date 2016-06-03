@@ -1,28 +1,71 @@
 package restaurant.server.datamapper;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
+
+import javax.imageio.ImageIO;
 
 import restaurant.server.model.Product;
 
 public class ProductMapper {
 
-	public void insert(Product p) {
+	public boolean insert(Product p, File filename) {
 		try {
-			String statement = "INSERT INTO product (name, type, price, description, quantity) VALUES (?,?,?,?,?)";
+			String statement = "INSERT INTO product (name, type, price, description,image,quantity) VALUES (?,?,?, ?,?,?)";
 			PreparedStatement dbStatement = DBConnection.getConnection().prepareStatement(statement);
 			dbStatement.setString(1, p.getName());
 			dbStatement.setString(2, p.getType());
-			dbStatement.setFloat(3, p.getPrice());
+			dbStatement.setDouble(3, p.getPrice());
 			dbStatement.setString(4,p.getDescription());
-			dbStatement.setInt(5,p.getQuantity());
+			
+			FileInputStream fin = new FileInputStream(filename);
+			dbStatement.setBinaryStream(5, (InputStream) fin, (int) filename.length());
+			dbStatement.setInt(6,p.getQuantity());
 			dbStatement.executeUpdate();
+			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
+			return false;
 		}
 
 	}
 
+	public synchronized ArrayList<BufferedImage> getAllImages() throws Exception {
+		PreparedStatement myStmt = null;
+		ResultSet myRs = null;
+		ArrayList<BufferedImage> images = new ArrayList<>();
+		try {
+			String selectSQL = "SELECT image From restaurant.product";
+			myStmt = (PreparedStatement) DBConnection.getConnection().prepareStatement(selectSQL);
+			myRs = myStmt.executeQuery();
+
+			while (myRs.next()) {
+				byte[] bytes = null;
+				bytes = myRs.getBytes(1);
+				if (bytes != null) {
+					InputStream is = new ByteArrayInputStream(bytes);
+					BufferedImage imag = ImageIO.read(is);
+					BufferedImage img = imag;
+					images.add(img);
+				}
+			}
+			return images;
+		} catch (SQLException | IOException e) {
+			e.printStackTrace();
+		} finally {
+		}
+
+		return null;
+	}
+	
+	
 	public Product find(int product_id) {
 		try {
 			Product c;
@@ -50,7 +93,7 @@ public class ProductMapper {
 		ArrayList<Product> products = new ArrayList<Product>();
 		try {
 			Product p;
-			String statement = "SELECT * FROM product";
+			String statement = "SELECT * FROM restaurant.product";
 			PreparedStatement dbStatement = DBConnection.getConnection().prepareStatement(statement);
 			ResultSet rs = dbStatement.executeQuery();
 			while (rs.next()) {
@@ -59,8 +102,8 @@ public class ProductMapper {
 				String type = rs.getString("type");
 				float price = rs.getFloat("price");
 				String description = rs.getString("description");
-				int qunatity = rs.getInt("qunatity");
-				p = new Product(product_no, name, type, price, description, qunatity);
+				int quantity = rs.getInt("quantity");
+				p = new Product(product_no, name, type, price, description, quantity);
 				products.add(p);
 			}
 		} catch (Exception e) {
@@ -99,7 +142,7 @@ public class ProductMapper {
 			PreparedStatement dbStatement = DBConnection.getConnection().prepareStatement(statement);
 			dbStatement.setString(1, p.getName());
 			dbStatement.setString(2, p.getType());
-			dbStatement.setFloat(3, p.getPrice());
+			dbStatement.setDouble(3, p.getPrice());
 			dbStatement.setString(4,p.getDescription());
 			dbStatement.setInt(5,p.getQuantity());
 			dbStatement.setInt(6,p.getProduct_id());

@@ -4,13 +4,15 @@ import restaurant.server.datamapper.ClientMapper;
 import restaurant.server.datamapper.EmployeeMapper;
 import restaurant.server.datamapper.OrderDetailMapper;
 import restaurant.server.datamapper.OrderMapper;
+import restaurant.server.datamapper.ProductMapper;
 
 public class MapperController {
 	private static ClientMapper clientMapper;
 	private static EmployeeMapper employeeMapper;
 	private static OrderMapper orderMapper;
 	private static OrderDetailMapper orderDetailMapper;
-
+	private static ProductMapper productMapper;
+	
 	private MapperController() {
 	}
 
@@ -19,6 +21,13 @@ public class MapperController {
 			clientMapper = new ClientMapper();
 		}
 		return clientMapper;
+	}
+	
+	public static ProductMapper getProductMapper() {
+		if (productMapper == null) {
+			productMapper = new ProductMapper();
+		}
+		return productMapper;
 	}
 
 	public static OrderMapper getOrderMapper() {

@@ -21,9 +21,9 @@ public class CommonController {
 		this.clientSocket = clientSocket;
 	}
 
-	public void processingRequest(String operation) {
-		switch (operation) {
-		case "common-login":
+	public void processingRequest(String[] operation) {
+		switch (operation[1]) {
+		case "login":
 			login();
 			break;
 
@@ -57,6 +57,5 @@ public class CommonController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
 	}
 }

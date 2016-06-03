@@ -1,16 +1,23 @@
 package restaurant.server.model;
 
-public class Product {
-	
+import java.io.Serializable;
+
+public class Product implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6843599983847264224L;
 	private int product_id;
 	private String name;
 	private String type;
-	private float price;
+	private double price;
 	private String description;
 	private int quantity;
+
 	
-	public Product(int product_id, String name, String type, float price, String description, int quantity) {
-		super();
+	
+	public Product(int product_id, String name, String type, double price, String description, int quantity) {
 		this.product_id = product_id;
 		this.name = name;
 		this.type = type;
@@ -18,8 +25,9 @@ public class Product {
 		this.description = description;
 		this.quantity = quantity;
 	}
-	public Product(){
-		
+
+	public Product() {
+
 	}
 
 	public int getProduct_id() {
@@ -46,11 +54,11 @@ public class Product {
 		this.type = type;
 	}
 
-	public float getPrice() {
+	public double getPrice() {
 		return price;
 	}
 
-	public void setPrice(float price) {
+	public void setPrice(double price) {
 		this.price = price;
 	}
 
@@ -65,17 +73,15 @@ public class Product {
 	public int getQuantity() {
 		return quantity;
 	}
+
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
+
 	@Override
 	public String toString() {
 		return "Product [product_id=" + product_id + ", name=" + name + ", type=" + type + ", price=" + price
-				+ ", description=" + description + ", qunatity=" + quantity +"]";
+				+ ", description=" + description + ", qunatity=" + quantity + "]";
 	}
-	
-	
-
-	
 
 }

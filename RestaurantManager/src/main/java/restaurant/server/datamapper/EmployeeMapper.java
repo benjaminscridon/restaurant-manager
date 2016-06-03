@@ -43,10 +43,10 @@ public class EmployeeMapper {
 		return false;
 	}
 
-	public synchronized ArrayList<Image> getAllImages() throws Exception {
+	public synchronized ArrayList<BufferedImage> getAllImages() throws Exception {
 		PreparedStatement myStmt = null;
 		ResultSet myRs = null;
-		ArrayList<Image> images = new ArrayList<>();
+		ArrayList<BufferedImage> images = new ArrayList<>();
 		try {
 			String selectSQL = "SELECT image From restaurant.employee";
 			myStmt = (PreparedStatement) DBConnection.getConnection().prepareStatement(selectSQL);
@@ -58,7 +58,7 @@ public class EmployeeMapper {
 				if (bytes != null) {
 					InputStream is = new ByteArrayInputStream(bytes);
 					BufferedImage imag = ImageIO.read(is);
-					Image img = imag;
+					BufferedImage img = imag;
 					images.add(img);
 				}
 			}

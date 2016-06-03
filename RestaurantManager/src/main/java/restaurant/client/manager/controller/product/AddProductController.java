@@ -21,12 +21,16 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
+import restaurant.client.ClientSocket;
 import restaurant.client.manager.ManagerMain;
+import restaurant.client.manager.controller.UploadPicture;
 import restaurant.client.validator.EmailValidator;
 import restaurant.client.validator.FormValidator;
 import restaurant.client.validator.MobileValidator;
 import restaurant.client.validator.PasswordValidator;
+import restaurant.server.controller.MapperController;
 import restaurant.server.model.Employee;
+import restaurant.server.model.Product;
 
 /**
  * 
@@ -35,27 +39,36 @@ import restaurant.server.model.Employee;
  */
 public class AddProductController implements Initializable {
 
-	@FXML private TextField nameField;
-	@FXML private TextField descriptionField;
-	@FXML private TextField priceField;
-	@FXML private TextField quantityField;
-	@FXML private ComboBox<String> typeField;
-	@FXML private ImageView picture;
-	@FXML private ImageView image;
-	@FXML private Label message;
-    private File file;
+	@FXML
+	private TextField nameField;
+	@FXML
+	private TextField descriptionField;
+	@FXML
+	private TextField priceField;
+	@FXML
+	private TextField quantityField;
+	@FXML
+	private ComboBox<String> typeField;
+	@FXML
+	private ImageView picture;
+	@FXML
+	private ImageView image;
+	@FXML
+	private Label message;
+	private File file;
 
 	public void initialize(URL location, ResourceBundle resources) {
 		message.setText("");
 
 		Image img_background = new Image("/background_restaurant.jpg");
 		image.setImage(img_background);
+		
 
 		Image img = new Image(getClass().getResourceAsStream("/foodDefault.jpg"));
 		picture.setImage(img);
 
 		ObservableList<String> options;
-		options = FXCollections.observableArrayList("drink", "cigarette","desert", "food");
+		options = FXCollections.observableArrayList("drink", "cigarette", "desert", "food");
 		typeField.setItems(options);
 	}
 
@@ -84,12 +97,7 @@ public class AddProductController implements Initializable {
 
 	@FXML
 	private void uploadPicture() {
-		FileChooser fileChooser = new FileChooser();
-
-		FileChooser.ExtensionFilter extFilterJPG = new FileChooser.ExtensionFilter("JPG files (*.jpg)", "*.JPG");
-		FileChooser.ExtensionFilter extFilterPNG = new FileChooser.ExtensionFilter("PNG files (*.png)", "*.PNG");
-		fileChooser.getExtensionFilters().addAll(extFilterJPG, extFilterPNG);
-		file = fileChooser.showOpenDialog(null);
+		file = (new UploadPicture().uploadPicture());
 		try {
 
 			if (file != null) {
@@ -105,61 +113,69 @@ public class AddProductController implements Initializable {
 	@FXML
 	private void addEmployee() {
 		message.setText("");
-//
-//		String password = passwordField.getText();
-//		String confirmPassword = confirmPassField.getText();
-//		String email = emailField.getText();
-//		String mobile = mobileField.getText();
-//		String name = nameField.getText();
-//		String address = addressField.getText();
-//
-//		String status = "";
-//		if (statusField.getValue() != null) {
-//			status = (String) statusField.getValue();
-//		}
-//
-//		String birthdate = "";
-//		LocalDate date = birthdateField.getValue();
-//		java.sql.Date selectedDate = null;
-//		if (date != null) {
-//			selectedDate = java.sql.Date.valueOf(date);
-//			birthdate = selectedDate.toString();
-//		}
-//
-//		if (new FormValidator().validate(
-//				new String[] { password, confirmPassword, status, email, mobile, name, address, birthdate }) == false) {
-//			message.setText("Please complete all fields.");
-//		} else if (validateMail(email) && validateMobile(mobile) && validatePassword(password, confirmPassword)) {
-//
-//			message.setText("");
-//			Employee employee = new Employee();
-//			employee.setAddress(address);
-//			employee.setEmail(email);
-//			employee.setJob_title(status);
-//			employee.setMobile(mobile);
-//			employee.setName(name);
-//			employee.setPassword(confirmPassword);
-//			employee.setHire_date(new java.sql.Date(System.currentTimeMillis()));
-//			employee.setBirthdate(java.sql.Date.valueOf(date));
-//
-//			if (file == null) {
-//				file = new File("src/main/resources/initialPicture.png");
-//			}
-//			if (MapperController.getEmployeeMapper().insert(employee, file)) {
-//				try {
-//					AnchorPane newEmployee = FXMLLoader
-//							.load(getClass().getResource("/restaurant/view/manager/employee/Add.fxml"));
-//					StartManagerApp.getRoot().setCenter(newEmployee);
-//					Label message1 = (Label) newEmployee.lookup("#message");
-//					message1.setText("The employee has been added successfully.");
-//
-//				} catch (IOException e) {
-//					e.printStackTrace();
-//				}
-//			} else {
-//				message.setText("There is an error... Please try again.");
-//			}
-//		}
+
+		String name = nameField.getText();
+		String description = descriptionField.getText();
+		String price = priceField.getText();
+		String quantity = quantityField.getText();
+		String type = "";
+		if (typeField.getValue() != null) {
+			type = (String) typeField.getValue();
+		}
+
+		if (new FormValidator().validate(new String[] { name, description, price, quantity, type }) == false) {
+			message.setText("Please complete all fields.");
+		} else if (validatePrice(price) && validateQuantity(quantity)) {
+
+			Product product = new Product();
+			product.setName(name);
+			product.setDescription(description);
+			product.setPrice(Double.parseDouble(price));
+			product.setQuantity(Integer.parseInt(quantity));
+			product.setType(type);
+
+			if (file == null) {
+				file = new File("src/main/resources/foodDefault.jpg");
+			}
+			try {
+
+				String request = "manager-product-addProduct";
+				ClientSocket client = new ClientSocket(ManagerMain.getDefaultServer(), ManagerMain.getDefaultPort());
+				client.connect();
+				client.writeObjectAndFile(product, file, request);
+				String[] response = (String[]) client.readObject();
+				client.closeConnection();
+				if (response[0].equals("true")) {
+					AnchorPane newProduct = FXMLLoader
+							.load(getClass().getResource("/restaurant/client/manager/view/product/Add.fxml"));
+					Label msg = (Label) newProduct.lookup("#message");
+					ManagerMain.getRoot().setCenter(newProduct);
+					msg.setText(response[1]);
+				}
+				message.setText(response[1]);
+			} catch (IOException | ClassNotFoundException e) {
+				e.printStackTrace();
+			}
+		} else {
+			message.setText("There is an error... Please try again.");
+		}
 	}
 
+	private boolean validatePrice(String priceS) {
+		double price = Double.parseDouble(priceS);
+		if (price <= 0) {
+			message.setText("Invalid price");
+			return false;
+		}
+		return true;
+	}
+
+	private boolean validateQuantity(String quantityS) {
+		int quantity = Integer.parseInt(quantityS);
+		if (quantity <= 0) {
+			message.setText("Invalid quantity.");
+			return false;
+		}
+		return true;
+	}
 }
