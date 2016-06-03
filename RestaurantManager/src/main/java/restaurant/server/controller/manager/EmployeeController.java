@@ -82,6 +82,7 @@ public class EmployeeController {
 		}
 	}
 
+
 	private void sendResponse(Object object) {
 		try {
 			ObjectOutputStream output = new ObjectOutputStream(clientSocket.getOutputStream());
@@ -90,6 +91,5 @@ public class EmployeeController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
 	}
 }

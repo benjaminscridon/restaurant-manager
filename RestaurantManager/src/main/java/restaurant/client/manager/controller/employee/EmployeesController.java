@@ -87,11 +87,13 @@ public class EmployeesController implements Initializable {
 			
 			String request2="manager-employee-getAllImages";
 			ClientSocket client2 = new ClientSocket(ManagerMain.getDefaultServer(), ManagerMain.getDefaultPort());
-			client.connect();
-			client.writeMessage(request2);
-			ArrayList<File> imageFiles=(ArrayList<File>)client2.readObject();
-			ArrayList<javafx.scene.image.Image> fximages=(new ConverterFileToImage()).convertFilesToImages(imageFiles);
+			client2.connect();
+			client2.writeMessage(request2);
+			ArrayList<File> imageFiles = (ArrayList<File>) client2.readObject();
+			ArrayList<javafx.scene.image.Image> fximages = (new ConverterFileToImage())
+					.convertFilesToImages(imageFiles);
 			client2.closeConnection();
+
 
 			if (response.size() > 0) {
 				final int numCols = 3;
