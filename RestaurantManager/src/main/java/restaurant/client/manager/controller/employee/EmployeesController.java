@@ -27,6 +27,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import restaurant.client.ClientSocket;
 import restaurant.client.manager.ManagerMain;
+import restaurant.client.manager.controller.ConverterFileToImage;
 import restaurant.server.model.Employee;
 
 /**
@@ -76,7 +77,7 @@ public class EmployeesController implements Initializable {
 
 	private void initializeGrid() {
 		try {
-			String request = "manager-getAllEmployees";
+			String request = "manager-employee-getAllEmployees";
 			ClientSocket client = new ClientSocket(ManagerMain.getDefaultServer(), ManagerMain.getDefaultPort());
 			client.connect();
 			client.writeMessage(request);
@@ -84,12 +85,12 @@ public class EmployeesController implements Initializable {
 			ArrayList<Employee> response = (ArrayList<Employee>) client.readObject();
 			client.closeConnection();
 			
-			String request2="manager-getAllEmployeesImages";
+			String request2="manager-employee-getAllImages";
 			ClientSocket client2 = new ClientSocket(ManagerMain.getDefaultServer(), ManagerMain.getDefaultPort());
 			client.connect();
 			client.writeMessage(request2);
 			ArrayList<File> imageFiles=(ArrayList<File>)client2.readObject();
-			ArrayList<javafx.scene.image.Image> fximages=convertFilesToImages(imageFiles);
+			ArrayList<javafx.scene.image.Image> fximages=(new ConverterFileToImage()).convertFilesToImages(imageFiles);
 			client2.closeConnection();
 
 			if (response.size() > 0) {
@@ -136,17 +137,5 @@ public class EmployeesController implements Initializable {
 		grid.setPadding(new Insets(10, 10, 10, 10));
 	}
 
-	private ArrayList<javafx.scene.image.Image> convertFilesToImages(ArrayList<File> fileImages){
-		ArrayList<javafx.scene.image.Image> images=new ArrayList<>();
-		for(int i=0; i <= fileImages.size(); i ++){
-			try{
-				BufferedImage image=ImageIO.read(fileImages.get(i));
-				Image imagefx=SwingFXUtils.toFXImage(image,null);
-				images.add(imagefx);
-			}catch(IOException e){
-				e.printStackTrace();
-			}
-		}
-		return images;
-	}
+
 }

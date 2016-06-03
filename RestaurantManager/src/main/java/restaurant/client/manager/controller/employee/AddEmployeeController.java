@@ -160,7 +160,7 @@ public class AddEmployeeController implements Initializable {
 
 			try {
 
-				String request1 = "manager-addEmployee";
+				String request1 = "manager-employee-addEmployee";
 				ClientSocket client = new ClientSocket(ManagerMain.getDefaultServer(), ManagerMain.getDefaultPort());
 				client.connect();
 				client.writeObjectAndFile(employee, file, request1);
