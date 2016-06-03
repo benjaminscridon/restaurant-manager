@@ -1,5 +1,24 @@
 
 
+.buttonDelete{
+	-fx-background-color: #800000;
+	-fx-text-fill:#ffe6e6;
+	}
+.buttonDelete:hover{
+	-fx-background-color: #e60000;
+	-fx-text-fill:#ffe6e6;
+	}	
+
+.buttonGreen{
+	-fx-background-color: #00802b;
+	-fx-text-fill:white;
+	}
+.buttonGreen:hover{
+	-fx-background-color: #00cc44;
+	-fx-text-fill:white;
+	}	
+
+
 .list-view {
   
     -fx-background-color: #394263;
