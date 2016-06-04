@@ -1,6 +1,7 @@
 package restaurant.client.waiter.controller;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -24,8 +25,8 @@ import restaurant.server.model.Product;
  * @author Beniamin
  * 
  */
-public class ProductController implements Initializable{
-	
+public class ProductController implements Initializable {
+
 	@FXML
 	private ImageView drinkImg;
 	@FXML
@@ -34,8 +35,7 @@ public class ProductController implements Initializable{
 	private ImageView desertImg;
 	@FXML
 	private ImageView cigaretteImg;
-	
-	
+
 	@FXML
 	private TableView<ProductTable> table;
 
@@ -49,80 +49,62 @@ public class ProductController implements Initializable{
 	@FXML
 	private ObservableList<ProductTable> info = FXCollections.observableArrayList();
 
-	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		initializeButtons();
 		initializeTableView();
 	}
-	
-	private void initializeButtons(){
+
+	private void initializeButtons() {
 		drinkImg.setImage(new Image("/waiter/drink.png"));
 		dishesImg.setImage(new Image("/waiter/dishes.png"));
 		desertImg.setImage(new Image("/waiter/cake.png"));
 		cigaretteImg.setImage(new Image("/waiter/cigarette.png"));
 	}
-	
-	private void initializeTableView(){
+
+	private void initializeTableView() {
 		table.getStylesheets().add(getClass().getResource("/waiter/table.css").toExternalForm());
-		
+
 		name.setCellValueFactory(new PropertyValueFactory<ProductTable, String>("name"));
 		price.setCellValueFactory(new PropertyValueFactory<ProductTable, String>("price"));
 		image.setCellValueFactory(new PropertyValueFactory<ProductTable, Image>("image"));
-		
-		
-		
-		String request = "manager-product-getAllProducts";
-		ClientSocket client = new ClientSocket(ManagerMain.getDefaultServer(), ManagerMain.getDefaultPort());
-		client.connect();
-		client.writeMessage(request);
 
-		ArrayList<Product> response = (ArrayList<Product>) client.readObject();
-		client.closeConnection();
+		try {
+			String request = "manager-product-getAllProducts";
+			ClientSocket client = new ClientSocket(ManagerMain.getDefaultServer(), ManagerMain.getDefaultPort());
+			client.connect();
+			client.writeMessage(request);
+			ArrayList<Product> products = (ArrayList<Product>) client.readObject();
+			client.closeConnection();
 
-		String request2 = "manager-product-getAllImages";
-		ClientSocket client2 = new ClientSocket(ManagerMain.getDefaultServer(), ManagerMain.getDefaultPort());
-		client2.connect();
-		client2.writeMessage(request2);
-		ArrayList<File> imageFiles = (ArrayList<File>) client2.readObject();
-		ArrayList<javafx.scene.image.Image> fximages = (new ConverterFileToImage())
-				.convertFilesToImages(imageFiles);
-		client2.closeConnection();
-		
-		
-		
-		
-		
-		
-		Image img = new Image(getClass().getResourceAsStream("/initialPicture.png"));
-		ProductTable p1=new ProductTable();
-		p1.setImage(new ImageView(img));
-		p1.setName("Coca Cola");
-		p1.setPrice("23.5 RON");
-		//info.add(p1);
-		
-		Image img1 = new Image(getClass().getResourceAsStream("/initialPicture.png"));
-		ImageView a=new ImageView(img1);
-		a.setPreserveRatio(true);
-		a.setSmooth(true);
-	     a.setFitHeight(50);
-         a.setFitWidth(50);
+			String request2 = "manager-product-getAllImages";
+			ClientSocket client2 = new ClientSocket(ManagerMain.getDefaultServer(), ManagerMain.getDefaultPort());
+			client2.connect();
+			client2.writeMessage(request2);
+			ArrayList<File> imageFiles = (ArrayList<File>) client2.readObject();
+			ArrayList<javafx.scene.image.Image> images = (new ConverterFileToImage()).convertFilesToImages(imageFiles);
+			client2.closeConnection();
 
-		
-		ProductTable p2=new ProductTable();
-		p2.setImage(a);
-		p2.setName("Coca Cola Zero");
-		p2.setPrice("23.5 RON");
-		//info.add(p2);
-		
-		Image img3 = new Image(getClass().getResourceAsStream("/dishes1.png"));
-		ProductTable p3=new ProductTable();
-		p3.setImage(new ImageView(img3));
-		p3.setName("Coca Cola Zero ++");
-		p3.setPrice("23.5 RON");
-		info.addAll(p3, p2,p1);
-		
-		table.setItems(info);
+			ArrayList<ProductTable> rows = new ArrayList<>();
+			for (int i = 0; i < products.size(); i++) {
+				ProductTable row = new ProductTable();
+				row.setName(products.get(i).getName());
+				row.setPrice(products.get(i).getPrice() + "");
+				row.setImage(new ImageView(images.get(i)));
+				rows.add(row);
+
+//				a.setPreserveRatio(true);
+//				a.setSmooth(true);
+//				a.setFitHeight(50);
+//				a.setFitWidth(50);
+
+			}
+			info.addAll(rows);
+			table.setItems(info);
+
+		} catch (IOException | ClassNotFoundException e) {
+			e.printStackTrace();
+		}
 	}
-	
+
 }
