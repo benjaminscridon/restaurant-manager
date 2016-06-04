@@ -11,7 +11,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-import restaurant.client.manager.ManagerMain;
 import restaurant.client.waiter.WaiterMain;
 
 public class LoginController implements Initializable {
@@ -38,22 +37,20 @@ public class LoginController implements Initializable {
 	}
 
 	@FXML
-	private void login() {
+	public void login() {
 		message.setText("");
-		/**
-		 * 1. apelez functia validate Daca returneaza true, atunci schimb
-		 * panelul si specific userul, in SessionManager
-		 */
 		try {
-			BorderPane home = FXMLLoader
-					.load(getClass().getResource("/restaurant/client/waiter/view/Activity.fxml"));
-			WaiterMain.getRoot().setCenter(home);
 
+			BorderPane activity = FXMLLoader.load(getClass().getResource("/restaurant/client/waiter/view/Activity.fxml"));
+			AnchorPane productsPanel = FXMLLoader
+					.load(getClass().getResource("/restaurant/client/waiter/view/Product.fxml"));
+			activity.setLeft(productsPanel);
+			
+			WaiterMain.getRoot().setCenter(activity);
+		
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
-
 	}
 
 	private boolean validate() {

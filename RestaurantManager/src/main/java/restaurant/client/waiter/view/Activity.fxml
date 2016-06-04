@@ -4,8 +4,6 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.image.Image?>
@@ -18,7 +16,7 @@
 	<top>
 		<AnchorPane prefHeight="111.0" prefWidth="950.0" styleClass="buttonBlue" stylesheets="@../../../../../resources/css/waiter.css" BorderPane.alignment="CENTER">
 			<children>
-				<Button fx:id="logout" layoutX="830.0" layoutY="15.0" mnemonicParsing="false" onAction="#logout" prefHeight="81.0" prefWidth="110.0" styleClass="buttonBlue2ndVersion" stylesheets="@../../../../../resources/css/waiter.css" textFill="WHITE">
+				<Button layoutX="830.0" layoutY="15.0" mnemonicParsing="false" onAction="#logout" prefHeight="81.0" prefWidth="110.0" styleClass="buttonBlue2ndVersion" stylesheets="@../../../../../resources/css/waiter.css" textFill="WHITE">
 					<font>
 						<Font name="Arial Black" size="16.0" />
 					</font>
@@ -111,7 +109,7 @@
 	<right>
 		<AnchorPane maxWidth="400.0" prefHeight="589.0" prefWidth="243.0" styleClass="buttonBlue" stylesheets="@../../../../../resources/css/waiter.css" BorderPane.alignment="CENTER">
 			<children>
-				<ListView fx:id="tablesList2" layoutX="10.0" layoutY="6.0" prefHeight="578.0" prefWidth="224.0" styleClass="buttonBlue2ndVersion" stylesheets="@../../../../resources/waiter.css" />
+				<ListView  layoutX="10.0" layoutY="6.0" prefHeight="578.0" prefWidth="224.0" styleClass="buttonBlue2ndVersion" stylesheets="@../../../../resources/waiter.css" />
 				<Label layoutX="26.0" layoutY="229.0" prefHeight="60.0" prefWidth="192.0" text="Work in progress...">
 					<font>
 						<Font size="21.0" />
@@ -199,86 +197,6 @@
 		</AnchorPane>
 	</center>
 	<left>
-		<AnchorPane prefHeight="589.0" prefWidth="484.0" styleClass="buttonBlue" stylesheets="@../../../../../resources/css/waiter.css" BorderPane.alignment="CENTER">
-			<children>
-				<TextField alignment="CENTER" layoutX="14.0" layoutY="98.0" prefHeight="37.0" prefWidth="148.0" promptText="product" styleClass="buttonBlue2">
-					<font>
-						<Font name="Berlin Sans FB" size="15.0" />
-					</font>
-				</TextField>
-				<Button layoutX="171.0" layoutY="99.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="69.0" styleClass="buttonGreen" text="Search" textFill="WHITE">
-					<font>
-						<Font name="Arial Black" size="13.0" />
-					</font>
-				</Button>
-				<Button layoutX="11.0" layoutY="1.0" mnemonicParsing="false" prefHeight="81.0" prefWidth="110.0" styleClass="buttonBlue2ndVersion" stylesheets="@../../../../resources/waiter.css" textFill="WHITE">
-					<font>
-						<Font name="Arial Black" size="16.0" />
-					</font>
-					<graphic>
-						<ImageView fx:id="drinkImg" fitHeight="63.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
-							<image>
-								<Image url="@../../../../../resources/waiter/drink.png" />
-							</image>
-							<effect>
-								<ColorAdjust brightness="-0.36" />
-							</effect>
-						</ImageView>
-					</graphic>
-				</Button>
-				<Button layoutX="134.0" layoutY="1.0" mnemonicParsing="false" prefHeight="81.0" prefWidth="110.0" styleClass="buttonBlue2ndVersion" stylesheets="@../../../../resources/waiter.css" textFill="WHITE" translateX="-5.0">
-					<font>
-						<Font name="Arial Black" size="16.0" />
-					</font>
-					<graphic>
-						<ImageView fx:id="dishesImg" fitHeight="58.0" fitWidth="66.0" pickOnBounds="true" preserveRatio="true">
-							<image>
-								<Image url="@../../../../../resources/waiter/dishes.png" />
-							</image>
-							<effect>
-								<ColorAdjust brightness="-0.26" />
-							</effect>
-						</ImageView>
-					</graphic>
-				</Button>
-				<Button layoutX="243.0" layoutY="1.0" mnemonicParsing="false" prefHeight="81.0" prefWidth="110.0" styleClass="buttonBlue2ndVersion" stylesheets="@../../../../resources/waiter.css" textFill="WHITE" translateX="3.0">
-					<font>
-						<Font name="Arial Black" size="16.0" />
-					</font>
-					<graphic>
-						<ImageView fx:id="desertImg" fitHeight="60.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true">
-							<image>
-								<Image url="@../../../../../resources/waiter/cake.png" />
-							</image>
-							<effect>
-								<ColorAdjust brightness="-0.57" />
-							</effect>
-						</ImageView>
-					</graphic>
-				</Button>
-				<Button layoutX="363.0" layoutY="1.0" mnemonicParsing="false" prefHeight="81.0" prefWidth="110.0" styleClass="buttonBlue2ndVersion" stylesheets="@../../../../resources/waiter.css" textFill="WHITE">
-					<font>
-						<Font name="Arial Black" size="16.0" />
-					</font>
-					<graphic>
-						<ImageView fx:id="cigaretteImg" fitHeight="65.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
-							<image>
-								<Image url="@../../../../../resources/waiter/cigarette.png" />
-							</image>
-							<effect>
-								<ColorAdjust brightness="-0.43" />
-							</effect>
-						</ImageView>
-					</graphic>
-				</Button>
-				<TableView fx:id="table" layoutX="16.0" layoutY="148.0" prefHeight="435.0" prefWidth="456.0" stylesheets="@../../../../../resources/waiter/table.css">
-					<columns>
-						<TableColumn fx:id="name" prefWidth="227.0" resizable="false" text="Name" />
-						<TableColumn fx:id="price" prefWidth="83.0" resizable="false" text="Price" />
-						<TableColumn fx:id="image" prefWidth="129.0" resizable="false" text="Image" />
-					</columns>
-				</TableView>
-			</children>
-		</AnchorPane>
+		<AnchorPane prefHeight="589.0" prefWidth="484.0" styleClass="buttonBlue" stylesheets="@../../../../../resources/css/waiter.css" BorderPane.alignment="CENTER" />
 	</left>
 </BorderPane>
