@@ -1,12 +1,12 @@
 
 
 .buttonDelete{
-	-fx-background-color: #800000;
-	-fx-text-fill:#ffe6e6;
+	-fx-background-color: #ff3333;
+	-fx-text-fill:white;
 	}
 .buttonDelete:hover{
-	-fx-background-color: #e60000;
-	-fx-text-fill:#ffe6e6;
+	-fx-background-color: #ff6666;
+	-fx-text-fill:white;
 	}	
 
 .buttonGreen{
