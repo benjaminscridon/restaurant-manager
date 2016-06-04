@@ -4,7 +4,6 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.time.LocalDate;
 import java.util.ResourceBundle;
 import javax.imageio.ImageIO;
 import javafx.collections.FXCollections;
@@ -14,22 +13,15 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.FileChooser;
 import restaurant.client.ClientSocket;
 import restaurant.client.manager.ManagerMain;
 import restaurant.client.manager.controller.UploadPicture;
-import restaurant.client.validator.EmailValidator;
 import restaurant.client.validator.FormValidator;
-import restaurant.client.validator.MobileValidator;
-import restaurant.client.validator.PasswordValidator;
-import restaurant.server.controller.MapperController;
-import restaurant.server.model.Employee;
 import restaurant.server.model.Product;
 
 /**
@@ -62,7 +54,6 @@ public class AddProductController implements Initializable {
 
 		Image img_background = new Image("/background_restaurant.jpg");
 		image.setImage(img_background);
-		
 
 		Image img = new Image(getClass().getResourceAsStream("/foodDefault.jpg"));
 		picture.setImage(img);

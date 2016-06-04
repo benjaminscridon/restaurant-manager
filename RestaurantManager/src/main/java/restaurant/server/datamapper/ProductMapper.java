@@ -1,4 +1,5 @@
 package restaurant.server.datamapper;
+
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -23,11 +24,11 @@ public class ProductMapper {
 			dbStatement.setString(1, p.getName());
 			dbStatement.setString(2, p.getType());
 			dbStatement.setDouble(3, p.getPrice());
-			dbStatement.setString(4,p.getDescription());
-			
+			dbStatement.setString(4, p.getDescription());
+
 			FileInputStream fin = new FileInputStream(filename);
 			dbStatement.setBinaryStream(5, (InputStream) fin, (int) filename.length());
-			dbStatement.setInt(6,p.getQuantity());
+			dbStatement.setInt(6, p.getQuantity());
 			dbStatement.executeUpdate();
 			return true;
 		} catch (Exception e) {
@@ -64,8 +65,7 @@ public class ProductMapper {
 
 		return null;
 	}
-	
-	
+
 	public Product find(int product_id) {
 		try {
 			Product c;
@@ -111,7 +111,7 @@ public class ProductMapper {
 		}
 		return products;
 	}
-	
+
 	public ArrayList<Product> findProductByName(String productName) {
 		ArrayList<Product> products = new ArrayList<Product>();
 		try {
@@ -136,19 +136,23 @@ public class ProductMapper {
 		return products;
 	}
 
-	public void update(Product p) {
+	public boolean update(Product p, File filename) {
 		try {
-			String statement = "UPDATE product SET name=?,type=?,price=?,description=? ,quantity=? where product_id=?";
+			String statement = "UPDATE product SET name=?,type=?,price=?,description=? ,quantity=? , image=? where product_id=?";
 			PreparedStatement dbStatement = DBConnection.getConnection().prepareStatement(statement);
 			dbStatement.setString(1, p.getName());
 			dbStatement.setString(2, p.getType());
 			dbStatement.setDouble(3, p.getPrice());
-			dbStatement.setString(4,p.getDescription());
-			dbStatement.setInt(5,p.getQuantity());
-			dbStatement.setInt(6,p.getProduct_id());
+			dbStatement.setString(4, p.getDescription());
+			dbStatement.setInt(5, p.getQuantity());
+			FileInputStream fin = new FileInputStream(filename);
+			dbStatement.setBinaryStream(6, (InputStream) fin, (int) filename.length());
+			dbStatement.setInt(7, p.getProduct_id());
 			dbStatement.executeUpdate();
+			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
+			return false;
 		}
 
 	}
@@ -157,7 +161,7 @@ public class ProductMapper {
 		try {
 			String statement = "DELETE FROM product where product_id=?";
 			PreparedStatement dbStatement = DBConnection.getConnection().prepareStatement(statement);
-			dbStatement.setInt(1,p.getProduct_id());
+			dbStatement.setInt(1, p.getProduct_id());
 			dbStatement.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -166,4 +170,3 @@ public class ProductMapper {
 	}
 
 }
-

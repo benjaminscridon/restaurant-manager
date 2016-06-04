@@ -10,7 +10,6 @@ import java.util.ArrayList;
 
 import restaurant.server.controller.ConverterImageToFile;
 import restaurant.server.controller.MapperController;
-import restaurant.server.model.Employee;
 import restaurant.server.model.Product;
 
 public class ProductController {
@@ -35,9 +34,28 @@ public class ProductController {
 		case "getAllImages":
 			getAllProductsImages();
 			break;
+		case "updateProduct":
+			updatePorduct();
+			break;
 		default:
 			break;
 		}
+	}
+
+	private void updatePorduct() {
+		try {
+			Product product = (Product) inStream.readObject();
+			File file = (File) inStream.readObject();
+			boolean bool = MapperController.getProductMapper().update(product, file);
+			if (bool == true) {
+				sendResponse(new String[] { "true", "The product was successfully updated !" });
+			} else {
+				sendResponse(new String[] { "false", "There was a problem updating this product !" });
+			}
+		} catch (IOException | ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+
 	}
 
 	private void addProduct() {

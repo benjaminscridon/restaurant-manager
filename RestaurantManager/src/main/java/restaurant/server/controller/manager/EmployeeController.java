@@ -7,9 +7,6 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.ArrayList;
-
-import javax.imageio.ImageIO;
-
 import restaurant.server.controller.ConverterImageToFile;
 import restaurant.server.controller.MapperController;
 import restaurant.server.model.Employee;
@@ -37,10 +34,29 @@ public class EmployeeController {
 		case "getAllImages":
 			getAllEmployeesImages();
 			break;
+		case "updateEmployee":
+			updateEmployees();
+			break;
 
 		default:
 			break;
 		}
+	}
+
+	private void updateEmployees() {
+		try {
+			Employee employee = (Employee) inStream.readObject();
+			File file = (File) inStream.readObject();
+			boolean bool = MapperController.getEmployeeMapper().update(employee, file);
+			if (bool == true) {
+				sendResponse(new String[] { "true", "Employee successfully updated !" });
+			} else {
+				sendResponse(new String[] { "false", "There was a problem updating this employee !" });
+			}
+		} catch (IOException | ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+
 	}
 
 	private void getAllEmployees() {
@@ -66,7 +82,6 @@ public class EmployeeController {
 		}
 	}
 
-
 	private void addEmployees() {
 		try {
 			Employee employee = (Employee) inStream.readObject();
@@ -81,7 +96,6 @@ public class EmployeeController {
 			e.printStackTrace();
 		}
 	}
-
 
 	private void sendResponse(Object object) {
 		try {

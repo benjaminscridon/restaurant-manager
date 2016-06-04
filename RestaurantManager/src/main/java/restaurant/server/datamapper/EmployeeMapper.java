@@ -237,7 +237,7 @@ public class EmployeeMapper {
 		return employees;
 	}
 
-	public void update(Employee e, File filename) {
+	public boolean update(Employee e, File filename) {
 		try {
 			String statement = "UPDATE employee SET password=?, job_title=?, name=?, birthdate=?, address=?, email=?, mobile=?, hire_date=?, fire_date=?, image=? where employee_no=?";
 			PreparedStatement dbStatement = (PreparedStatement) DBConnection.getConnection()
@@ -256,8 +256,10 @@ public class EmployeeMapper {
 			dbStatement.setBinaryStream(10, (InputStream) fin, (int) filename.length());
 			dbStatement.setInt(11, e.getEmployee_no());
 			dbStatement.executeUpdate();
+			return true;
 		} catch (Exception e1) {
 			e1.printStackTrace();
+			return false;
 		}
 
 	}
