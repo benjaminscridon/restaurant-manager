@@ -90,14 +90,13 @@ public class ProductController implements Initializable {
 				ProductTable row = new ProductTable();
 				row.setName(products.get(i).getName());
 				row.setPrice(products.get(i).getPrice() + "");
-				row.setImage(new ImageView(images.get(i)));
+				ImageView img=new ImageView(images.get(i));
+				img.setPreserveRatio(true);
+				img.setSmooth(true);
+				img.setFitHeight(60);
+				img.setFitWidth(60);
+				row.setImage(img);
 				rows.add(row);
-
-//				a.setPreserveRatio(true);
-//				a.setSmooth(true);
-//				a.setFitHeight(50);
-//				a.setFitWidth(50);
-
 			}
 			info.addAll(rows);
 			table.setItems(info);

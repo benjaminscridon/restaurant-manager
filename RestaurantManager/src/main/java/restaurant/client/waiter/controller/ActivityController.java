@@ -47,32 +47,49 @@ public class ActivityController implements Initializable {
 	@FXML
 	private ComboBox tablesCb;
 
+	ObservableList<String> obsTablesCb;
+
+	//------- Order ListView -------------------------
+	@FXML private ListView ordersListView;
+	@FXML private ObservableList<String> ordersObsList = FXCollections.observableArrayList();
+	
+	
+	
+	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		
+
 		initializeButtons();
 		initializeComboBox();
-		
-		tablesList.setPlaceholder(new Label("No Content In List"));
+
+		tablesList.setPlaceholder(new Label("No Tables"));
 		tablesList.setItems(tables);
 	}
 
-	
-	
-
-
 	private void initializeComboBox() {
-		ArrayList<String> tablee=new ArrayList<>();
-		for(int i=1; i<=30; i++){
-			tablee.add(new String("Table "+i));
+		ArrayList<String> tablee = new ArrayList<>();
+		for (int i = 1; i <= 30; i++) {
+			tablee.add(new String("Table " + i));
 		}
-		ObservableList<String> options=FXCollections.observableArrayList(tablee);
-		tablesCb.setItems(options);
+		obsTablesCb = FXCollections.observableArrayList(tablee);
+		tablesCb.setItems(obsTablesCb);
 	}
 
+	@FXML
+	private void removeTable() {
+		String selectedTable = tablesList.getSelectionModel().getSelectedItem() + "";
+		tables.remove(selectedTable);
+		obsTablesCb.add(selectedTable);
+		initializeComboBox();
+	}
 
-
-
+	@FXML
+	private void addTable() {
+		String selectedTable = tablesCb.getValue() + "";
+		tables.add(tablesCb.getValue() + "");
+		tablesCb.getSelectionModel().clearSelection();
+		obsTablesCb.remove(selectedTable);
+	}
 
 	@FXML
 	private void logout() {
@@ -83,13 +100,12 @@ public class ActivityController implements Initializable {
 			e.printStackTrace();
 		}
 	}
-	
-	
+
 	private void initializeButtons() {
 		homeImg.setImage(new Image("/waiter/home1.png"));
 		foodImg.setImage(new Image("/waiter/pizza.png"));
 		kitchenImg.setImage(new Image("/waiter/kitchen.png"));
 		paymentsImg.setImage(new Image("/waiter/payment.png"));
-		logoutImg.setImage(new Image("/waiter/logout.png"));		
+		logoutImg.setImage(new Image("/waiter/logout.png"));
 	}
 }

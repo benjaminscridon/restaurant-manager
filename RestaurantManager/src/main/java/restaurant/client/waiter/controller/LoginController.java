@@ -44,7 +44,7 @@ public class LoginController implements Initializable {
 			BorderPane activity = FXMLLoader.load(getClass().getResource("/restaurant/client/waiter/view/Activity.fxml"));
 			AnchorPane productsPanel = FXMLLoader
 					.load(getClass().getResource("/restaurant/client/waiter/view/Product.fxml"));
-			activity.setLeft(productsPanel);
+			activity.setCenter(productsPanel);
 			
 			WaiterMain.getRoot().setCenter(activity);
 		
