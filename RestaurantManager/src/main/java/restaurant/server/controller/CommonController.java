@@ -23,8 +23,8 @@ public class CommonController {
 
 	public void processingRequest(String[] operation) {
 		switch (operation[1]) {
-		case "login":
-			login();
+		case "managerLogin":
+			login("manager");
 			break;
 
 		default:
@@ -32,12 +32,12 @@ public class CommonController {
 		}
 	}
 
-	private void login() {
+	private void login(String job_title) {
 		try {
 			String[] info = (String[]) inStream.readObject();
 			int username = Integer.parseInt(info[0].toString());
 			String password = info[1].toString();
-			if (MapperController.getEmployeeMapper().findEmployeeByIdAndPass(username, password)) {
+			if (MapperController.getEmployeeMapper().findEmployeeByIdPassStatus(username, password, job_title)) {
 				Employee currentEmployee = MapperController.getEmployeeMapper().find(username);
 				sendResponse(currentEmployee);
 			} else {

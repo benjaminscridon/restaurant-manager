@@ -1,6 +1,5 @@
 package restaurant.server.datamapper;
 
-import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -186,14 +185,15 @@ public class EmployeeMapper {
 		return bool;
 	}
 
-	public boolean findEmployeeByIdAndPass(int employee_no, String pass) {
+	public boolean findEmployeeByIdPassStatus(int employee_no, String pass, String job_title) {
 		boolean bool = false;
 		try {
-			String statement = "SELECT * FROM employee where employee_no=? and password=?";
+			String statement = "SELECT * FROM employee where employee_no=? and password=? and job_title=?";
 			PreparedStatement dbStatement = (PreparedStatement) DBConnection.getConnection()
 					.prepareStatement(statement);
 			dbStatement.setInt(1, employee_no);
 			dbStatement.setString(2, pass);
+			dbStatement.setString(3, job_title);
 			ResultSet rs = dbStatement.executeQuery();
 			while (rs.next()) {
 				int employee_id = rs.getInt("employee_no");

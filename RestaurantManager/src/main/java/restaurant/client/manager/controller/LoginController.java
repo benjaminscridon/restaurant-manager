@@ -50,10 +50,9 @@ public class LoginController implements Initializable {
 			String pass = password.getText();
 
 			String[] info = { username, pass };
-			String request = "common-login";
+			String request = "common-managerLogin";
 			try {
-				ClientSocket client = new ClientSocket(ManagerMain.getDefaultServer(),
-						ManagerMain.getDefaultPort());
+				ClientSocket client = new ClientSocket(ManagerMain.getDefaultServer(), ManagerMain.getDefaultPort());
 				client.connect();
 				client.writeObject(info, request);
 
