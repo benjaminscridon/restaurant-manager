@@ -66,7 +66,6 @@ public class ActivityController implements Initializable {
 		for(int i=1; i<=30; i++){
 			tablee.add(new String("Table "+i));
 		}
-		
 		ObservableList<String> options=FXCollections.observableArrayList(tablee);
 		tablesCb.setItems(options);
 	}

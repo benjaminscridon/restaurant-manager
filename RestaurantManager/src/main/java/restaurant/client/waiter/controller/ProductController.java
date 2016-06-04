@@ -1,6 +1,8 @@
 package restaurant.client.waiter.controller;
 
+import java.io.File;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -11,7 +13,11 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import restaurant.client.ClientSocket;
+import restaurant.client.manager.ManagerMain;
+import restaurant.client.manager.controller.ConverterFileToImage;
 import restaurant.client.waiter.view.ProductTable;
+import restaurant.server.model.Product;
 
 /**
  * 
@@ -63,6 +69,31 @@ public class ProductController implements Initializable{
 		name.setCellValueFactory(new PropertyValueFactory<ProductTable, String>("name"));
 		price.setCellValueFactory(new PropertyValueFactory<ProductTable, String>("price"));
 		image.setCellValueFactory(new PropertyValueFactory<ProductTable, Image>("image"));
+		
+		
+		
+		String request = "manager-product-getAllProducts";
+		ClientSocket client = new ClientSocket(ManagerMain.getDefaultServer(), ManagerMain.getDefaultPort());
+		client.connect();
+		client.writeMessage(request);
+
+		ArrayList<Product> response = (ArrayList<Product>) client.readObject();
+		client.closeConnection();
+
+		String request2 = "manager-product-getAllImages";
+		ClientSocket client2 = new ClientSocket(ManagerMain.getDefaultServer(), ManagerMain.getDefaultPort());
+		client2.connect();
+		client2.writeMessage(request2);
+		ArrayList<File> imageFiles = (ArrayList<File>) client2.readObject();
+		ArrayList<javafx.scene.image.Image> fximages = (new ConverterFileToImage())
+				.convertFilesToImages(imageFiles);
+		client2.closeConnection();
+		
+		
+		
+		
+		
+		
 		Image img = new Image(getClass().getResourceAsStream("/initialPicture.png"));
 		ProductTable p1=new ProductTable();
 		p1.setImage(new ImageView(img));
@@ -90,7 +121,6 @@ public class ProductController implements Initializable{
 		p3.setName("Coca Cola Zero ++");
 		p3.setPrice("23.5 RON");
 		info.addAll(p3, p2,p1);
-		
 		
 		table.setItems(info);
 	}
