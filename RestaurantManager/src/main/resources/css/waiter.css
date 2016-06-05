@@ -1,3 +1,39 @@
+.list-viewOrders {
+  
+    -fx-background-color: #394263;
+    -fx-text-fill: white; /* 5 */
+    -fx-font: 14px;
+     -fx-alignment: center-left;
+     -fx-font-family: Oxygen Light;
+ 
+     
+     
+}
+
+.list-viewOrders .scroll-bar:vertical{
+
+	    -fx-background-color:#394263;
+  -fx-font: 14px;
+ 
+	}
+	
+.list-viewOrders .list-cell:filled{
+	  -fx-text-fill: white; 
+   -fx-background-color:#394263;
+     -fx-alignment: center-left;
+       -fx-font: 14px;
+}
+.list-viewOrders .list-cell:filled:selected:focused {
+ -fx-background-color: #9ea6c7;
+    -fx-text-fill: black; 
+     -fx-alignment: center-left;
+       -fx-font: 14px;
+}
+.list-viewOrders .list-cell:odd { -fx-background-color: #394263; 
+  -fx-font: 14px;/* 1 */ }
+.list-viewOrders .list-cell:even { -fx-background-color: #394263;
+	  -fx-font: 14px;/* for information */
+}
 
 
 .buttonDelete{
@@ -18,6 +54,10 @@
 	-fx-text-fill:white;
 	}	
 
+.textFieldTotal{
+	-fx-background-color: #394263;
+	-fx-text-fill:white;
+	}
 
 .list-view {
   

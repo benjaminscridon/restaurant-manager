@@ -11,25 +11,16 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity"
-	minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0"
-	prefWidth="950.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1"
-	fx:controller="restaurant.client.waiter.controller.ActivityController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="restaurant.client.waiter.controller.ActivityController">
 	<top>
-		<AnchorPane prefHeight="111.0" prefWidth="950.0"
-			styleClass="buttonBlue" stylesheets="@../../../../../resources/css/waiter.css"
-			BorderPane.alignment="CENTER">
+		<AnchorPane prefHeight="111.0" prefWidth="950.0" styleClass="buttonBlue" stylesheets="@../../../../../resources/css/waiter.css" BorderPane.alignment="CENTER">
 			<children>
-				<Button layoutX="830.0" layoutY="15.0" mnemonicParsing="false"
-					onAction="#logout" prefHeight="81.0" prefWidth="110.0"
-					styleClass="buttonBlue2ndVersion" stylesheets="@../../../../../resources/css/waiter.css"
-					textFill="WHITE">
+				<Button layoutX="830.0" layoutY="15.0" mnemonicParsing="false" onAction="#logout" prefHeight="81.0" prefWidth="110.0" styleClass="buttonBlue2ndVersion" stylesheets="@../../../../../resources/css/waiter.css" textFill="WHITE">
 					<font>
 						<Font name="Arial Black" size="16.0" />
 					</font>
 					<graphic>
-						<ImageView fx:id="logoutImg" fitHeight="43.0" fitWidth="51.0"
-							pickOnBounds="true" preserveRatio="true">
+						<ImageView fx:id="logoutImg" fitHeight="43.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
 							<image>
 								<Image url="@../../../../../resources/waiter/logout.png" />
 							</image>
@@ -39,31 +30,24 @@
 						</ImageView>
 					</graphic>
 				</Button>
-				<Button alignment="BASELINE_CENTER" contentDisplay="RIGHT"
-					layoutX="11.0" layoutY="15.0" mnemonicParsing="false" prefHeight="81.0"
-					prefWidth="110.0" styleClass="buttonBlue2ndVersion"
-					stylesheets="@../../../../../resources/css/waiter.css" textFill="WHITE">
+				<Button alignment="BASELINE_CENTER" contentDisplay="RIGHT" layoutX="11.0" layoutY="15.0" mnemonicParsing="false" prefHeight="81.0" prefWidth="110.0" styleClass="buttonBlue2ndVersion" stylesheets="@../../../../../resources/css/waiter.css" textFill="WHITE">
 					<font>
 						<Font name="Arial Black" size="1.0" />
 					</font>
 					<graphic>
-						<ImageView fx:id="homeImg" fitHeight="56.0" fitWidth="56.0"
-							pickOnBounds="true" preserveRatio="true">
+						<ImageView fx:id="homeImg" fitHeight="56.0" fitWidth="56.0" pickOnBounds="true" preserveRatio="true">
 							<image>
 								<Image url="@../../../../../resources/waiter/home1.png" />
 							</image>
 						</ImageView>
 					</graphic>
 				</Button>
-				<Button layoutX="128.0" layoutY="16.0" mnemonicParsing="false"
-					prefHeight="81.0" prefWidth="110.0" styleClass="buttonBlue2ndVersion"
-					stylesheets="@../../../../../resources/css/waiter.css" textFill="WHITE">
+				<Button layoutX="128.0" layoutY="16.0" mnemonicParsing="false" prefHeight="81.0" prefWidth="110.0" styleClass="buttonBlue2ndVersion" stylesheets="@../../../../../resources/css/waiter.css" textFill="WHITE">
 					<font>
 						<Font name="Arial Black" size="16.0" />
 					</font>
 					<graphic>
-						<ImageView fx:id="foodImg" fitHeight="69.0" fitWidth="74.0"
-							pickOnBounds="true" preserveRatio="true">
+						<ImageView fx:id="foodImg" fitHeight="69.0" fitWidth="74.0" pickOnBounds="true" preserveRatio="true">
 							<image>
 								<Image url="@../../../../../resources/waiter/pizza.png" />
 							</image>
@@ -73,15 +57,12 @@
 						</ImageView>
 					</graphic>
 				</Button>
-				<Button layoutX="245.0" layoutY="16.0" mnemonicParsing="false"
-					prefHeight="81.0" prefWidth="110.0" styleClass="buttonBlue2ndVersion"
-					stylesheets="@../../../../../resources/css/waiter.css" textFill="WHITE">
+				<Button layoutX="245.0" layoutY="16.0" mnemonicParsing="false" prefHeight="81.0" prefWidth="110.0" styleClass="buttonBlue2ndVersion" stylesheets="@../../../../../resources/css/waiter.css" textFill="WHITE">
 					<font>
 						<Font name="Arial Black" size="16.0" />
 					</font>
 					<graphic>
-						<ImageView fx:id="kitchenImg" fitHeight="55.0" fitWidth="85.0"
-							pickOnBounds="true" preserveRatio="true">
+						<ImageView fx:id="kitchenImg" fitHeight="55.0" fitWidth="85.0" pickOnBounds="true" preserveRatio="true">
 							<image>
 								<Image url="@../../../../../resources/waiter/kitchen.png" />
 							</image>
@@ -91,15 +72,12 @@
 						</ImageView>
 					</graphic>
 				</Button>
-				<Button layoutX="362.0" layoutY="16.0" mnemonicParsing="false"
-					prefHeight="81.0" prefWidth="110.0" styleClass="buttonBlue2ndVersion"
-					stylesheets="@../../../../../resources/css/waiter.css" textFill="WHITE">
+				<Button layoutX="362.0" layoutY="16.0" mnemonicParsing="false" prefHeight="81.0" prefWidth="110.0" styleClass="buttonBlue2ndVersion" stylesheets="@../../../../../resources/css/waiter.css" textFill="WHITE">
 					<font>
 						<Font name="Arial Black" size="16.0" />
 					</font>
 					<graphic>
-						<ImageView fx:id="paymentsImg" fitHeight="67.0"
-							fitWidth="79.0" pickOnBounds="true" preserveRatio="true">
+						<ImageView fx:id="paymentsImg" fitHeight="67.0" fitWidth="79.0" pickOnBounds="true" preserveRatio="true">
 							<image>
 								<Image url="@../../../../../resources/waiter/payment.png" />
 							</image>
@@ -109,23 +87,17 @@
 						</ImageView>
 					</graphic>
 				</Button>
-				<Button layoutX="479.0" layoutY="16.0" mnemonicParsing="false"
-					prefHeight="81.0" prefWidth="110.0" styleClass="buttonBlue2ndVersion"
-					stylesheets="@../../../../../resources/css/waiter.css" textFill="WHITE">
+				<Button layoutX="479.0" layoutY="16.0" mnemonicParsing="false" prefHeight="81.0" prefWidth="110.0" styleClass="buttonBlue2ndVersion" stylesheets="@../../../../../resources/css/waiter.css" textFill="WHITE">
 					<font>
 						<Font name="Arial Black" size="16.0" />
 					</font>
 				</Button>
-				<Button layoutX="596.0" layoutY="16.0" mnemonicParsing="false"
-					prefHeight="81.0" prefWidth="110.0" styleClass="buttonBlue2ndVersion"
-					stylesheets="@../../../../../resources/css/waiter.css" textFill="WHITE">
+				<Button layoutX="596.0" layoutY="16.0" mnemonicParsing="false" prefHeight="81.0" prefWidth="110.0" styleClass="buttonBlue2ndVersion" stylesheets="@../../../../../resources/css/waiter.css" textFill="WHITE">
 					<font>
 						<Font name="Arial Black" size="16.0" />
 					</font>
 				</Button>
-				<Button layoutX="713.0" layoutY="16.0" mnemonicParsing="false"
-					prefHeight="81.0" prefWidth="110.0" styleClass="buttonBlue2ndVersion"
-					stylesheets="@../../../../../resources/css/waiter.css" textFill="WHITE">
+				<Button layoutX="713.0" layoutY="16.0" mnemonicParsing="false" prefHeight="81.0" prefWidth="110.0" styleClass="buttonBlue2ndVersion" stylesheets="@../../../../../resources/css/waiter.css" textFill="WHITE">
 					<font>
 						<Font name="Arial Black" size="16.0" />
 					</font>
@@ -134,142 +106,101 @@
 		</AnchorPane>
 	</top>
 	<right>
-		<AnchorPane maxWidth="400.0" prefHeight="589.0" prefWidth="243.0"
-			styleClass="buttonBlue" stylesheets="@../../../../../resources/css/waiter.css"
-			BorderPane.alignment="CENTER">
+		<AnchorPane maxWidth="400.0" prefHeight="589.0" prefWidth="243.0" styleClass="buttonBlue" stylesheets="@../../../../../resources/css/waiter.css" BorderPane.alignment="CENTER">
 			<children>
-				<ListView fx:id="ordersListView" layoutX="10.0" layoutY="52.0"
-					prefHeight="532.0" prefWidth="224.0" styleClass="buttonBlue2"
-					stylesheets="@../../../../resources/waiter.css" />
-				<Button layoutX="121.0" layoutY="8.0" mnemonicParsing="false"
-					opacity="0.9" prefHeight="36.0" prefWidth="113.0" styleClass="buttonGreen"
-					text=" Add Product" textFill="WHITE">
+				<ListView fx:id="ordersListView" layoutX="10.0" layoutY="52.0" prefHeight="487.0" prefWidth="224.0" styleClass="list-viewOrders" stylesheets="@../../../../resources/waiter.css" />
+				<Button layoutX="121.0" layoutY="8.0" mnemonicParsing="false" onAction="#addProductToTable" opacity="0.9" prefHeight="36.0" prefWidth="113.0" styleClass="buttonGreen" text=" Add Product" textFill="WHITE">
 					<font>
 						<Font name="Arial Black" size="13.0" />
 					</font>
 				</Button>
-				<Button layoutX="10.0" layoutY="8.0" mnemonicParsing="false"
-					opacity="0.9" prefHeight="36.0" prefWidth="102.0" styleClass="buttonDelete"
-					text="Remove" textFill="WHITE">
+				<Button layoutX="10.0" layoutY="8.0" mnemonicParsing="false" opacity="0.9" prefHeight="36.0" prefWidth="102.0" styleClass="buttonDelete" text="Remove" textFill="WHITE">
 					<font>
 						<Font name="Arial Black" size="13.0" />
 					</font>
 				</Button>
+				<TextField fx:id="totalField" alignment="CENTER_RIGHT" editable="false" layoutX="10.0" layoutY="539.0" prefHeight="37.0" prefWidth="224.0" styleClass="textFieldTotal" text="Total: ">
+					<font>
+						<Font size="15.0" />
+					</font>
+				</TextField>
 			</children>
 		</AnchorPane>
 	</right>
 	<center>
-		<AnchorPane maxWidth="485.0" minWidth="49.0" prefHeight="589.0"
-			prefWidth="485.0" styleClass="buttonBlue"
-			stylesheets="@../../../../../resources/css/waiter.css"
-			BorderPane.alignment="CENTER" />
+		<AnchorPane maxWidth="485.0" minWidth="49.0" prefHeight="589.0" prefWidth="485.0" styleClass="buttonBlue" stylesheets="@../../../../../resources/css/waiter.css" BorderPane.alignment="CENTER" />
 	</center>
 	<left>
-		<AnchorPane prefHeight="589.0" prefWidth="237.0"
-			styleClass="buttonBlue" stylesheets="@../../../../../resources/css/waiter.css"
-			BorderPane.alignment="CENTER">
+		<AnchorPane prefHeight="589.0" prefWidth="237.0" styleClass="buttonBlue" stylesheets="@../../../../../resources/css/waiter.css" BorderPane.alignment="CENTER">
 			<children>
-				<TextField alignment="CENTER_RIGHT" editable="false"
-					layoutX="13.0" layoutY="336.0" prefHeight="43.0" prefWidth="220.0"
-					styleClass="text-fieldNormal" stylesheets="@../../../../resources/waiter.css"
-					text="0">
+				<TextField fx:id="calculator" alignment="CENTER_RIGHT" editable="false" layoutX="13.0" layoutY="336.0" prefHeight="43.0" prefWidth="220.0" styleClass="text-fieldNormal" stylesheets="@../../../../resources/waiter.css" text="0">
 					<font>
 						<Font name="Arial Black" size="17.0" />
 					</font>
 				</TextField>
-				<Button layoutX="14.0" layoutY="389.0" mnemonicParsing="false"
-					prefHeight="40.0" prefWidth="49.0" styleClass="buttonBlueLight"
-					stylesheets="@../../../../resources/waiter.css" text="1" textFill="WHITE">
+				<Button layoutX="14.0" layoutY="389.0" mnemonicParsing="false" onAction="#press1" prefHeight="40.0" prefWidth="49.0" styleClass="buttonBlueLight" stylesheets="@../../../../resources/waiter.css" text="1" textFill="WHITE">
 					<font>
 						<Font name="Arial Black" size="17.0" />
 					</font>
 				</Button>
-				<ListView fx:id="tablesList" layoutX="14.0" layoutY="87.0"
-					prefHeight="240.0" prefWidth="219.0" styleClass="buttonBlue2"
-					stylesheets="@../../../../resources/waiter.css" />
-				<Button layoutX="127.0" layoutY="44.0" mnemonicParsing="false"
-					onAction="#addTable" opacity="0.9" prefHeight="36.0" prefWidth="107.0"
-					styleClass="buttonGreen" text="Add Table" textFill="WHITE">
+				<ListView fx:id="tablesList" layoutX="14.0" layoutY="87.0" prefHeight="240.0" prefWidth="219.0" styleClass="buttonBlue2" stylesheets="@../../../../resources/waiter.css" />
+				<Button layoutX="127.0" layoutY="44.0" mnemonicParsing="false" onAction="#addTable" opacity="0.9" prefHeight="36.0" prefWidth="107.0" styleClass="buttonGreen" text="Add Table" textFill="WHITE">
 					<font>
 						<Font name="Arial Black" size="13.0" />
 					</font>
 				</Button>
-				<ComboBox fx:id="tablesCb" layoutX="14.0" prefHeight="36.0"
-					prefWidth="220.0" promptText="Select Table" styleClass="combo-box" />
-				<Button layoutX="73.0" layoutY="389.0" mnemonicParsing="false"
-					prefHeight="40.0" prefWidth="49.0" styleClass="buttonBlueLight"
-					stylesheets="@../../../../resources/waiter.css" text="2" textFill="WHITE">
+				<ComboBox fx:id="tablesCb" layoutX="14.0" prefHeight="36.0" prefWidth="220.0" promptText="Select Table" styleClass="combo-box" />
+				<Button layoutX="73.0" layoutY="389.0" mnemonicParsing="false" onAction="#press2" prefHeight="40.0" prefWidth="49.0" styleClass="buttonBlueLight" stylesheets="@../../../../resources/waiter.css" text="2" textFill="WHITE">
 					<font>
 						<Font name="Arial Black" size="17.0" />
 					</font>
 				</Button>
-				<Button layoutX="131.0" layoutY="389.0" mnemonicParsing="false"
-					prefHeight="40.0" prefWidth="49.0" styleClass="buttonBlueLight"
-					stylesheets="@../../../../resources/waiter.css" text="3" textFill="WHITE">
+				<Button layoutX="131.0" layoutY="389.0" mnemonicParsing="false" onAction="#press3" prefHeight="40.0" prefWidth="49.0" styleClass="buttonBlueLight" stylesheets="@../../../../resources/waiter.css" text="3" textFill="WHITE">
 					<font>
 						<Font name="Arial Black" size="17.0" />
 					</font>
 				</Button>
-				<Button layoutX="15.0" layoutY="438.0" mnemonicParsing="false"
-					prefHeight="40.0" prefWidth="49.0" styleClass="buttonBlueLight"
-					stylesheets="@../../../../resources/waiter.css" text="4" textFill="WHITE">
+				<Button layoutX="15.0" layoutY="438.0" mnemonicParsing="false" onAction="#press4" prefHeight="40.0" prefWidth="49.0" styleClass="buttonBlueLight" stylesheets="@../../../../resources/waiter.css" text="4" textFill="WHITE">
 					<font>
 						<Font name="Arial Black" size="17.0" />
 					</font>
 				</Button>
-				<Button layoutX="73.0" layoutY="438.0" mnemonicParsing="false"
-					prefHeight="40.0" prefWidth="49.0" styleClass="buttonBlueLight"
-					stylesheets="@../../../../resources/waiter.css" text="5" textFill="WHITE">
+				<Button layoutX="73.0" layoutY="438.0" mnemonicParsing="false" onAction="#press5" prefHeight="40.0" prefWidth="49.0" styleClass="buttonBlueLight" stylesheets="@../../../../resources/waiter.css" text="5" textFill="WHITE">
 					<font>
 						<Font name="Arial Black" size="17.0" />
 					</font>
 				</Button>
-				<Button layoutX="131.0" layoutY="438.0" mnemonicParsing="false"
-					prefHeight="40.0" prefWidth="49.0" styleClass="buttonBlueLight"
-					stylesheets="@../../../../resources/waiter.css" text="6" textFill="WHITE">
+				<Button layoutX="131.0" layoutY="438.0" mnemonicParsing="false" onAction="#press6" prefHeight="40.0" prefWidth="49.0" styleClass="buttonBlueLight" stylesheets="@../../../../resources/waiter.css" text="6" textFill="WHITE">
 					<font>
 						<Font name="Arial Black" size="17.0" />
 					</font>
 				</Button>
-				<Button layoutX="15.0" layoutY="487.0" mnemonicParsing="false"
-					prefHeight="40.0" prefWidth="49.0" styleClass="buttonBlueLight"
-					stylesheets="@../../../../resources/waiter.css" text="7" textFill="WHITE">
+				<Button layoutX="15.0" layoutY="487.0" mnemonicParsing="false" onAction="#press7" prefHeight="40.0" prefWidth="49.0" styleClass="buttonBlueLight" stylesheets="@../../../../resources/waiter.css" text="7" textFill="WHITE">
 					<font>
 						<Font name="Arial Black" size="17.0" />
 					</font>
 				</Button>
-				<Button layoutX="73.0" layoutY="487.0" mnemonicParsing="false"
-					prefHeight="40.0" prefWidth="49.0" styleClass="buttonBlueLight"
-					stylesheets="@../../../../resources/waiter.css" text="8" textFill="WHITE">
+				<Button layoutX="73.0" layoutY="487.0" mnemonicParsing="false" onAction="#press8" prefHeight="40.0" prefWidth="49.0" styleClass="buttonBlueLight" stylesheets="@../../../../resources/waiter.css" text="8" textFill="WHITE">
 					<font>
 						<Font name="Arial Black" size="17.0" />
 					</font>
 				</Button>
-				<Button layoutX="131.0" layoutY="487.0" mnemonicParsing="false"
-					prefHeight="40.0" prefWidth="49.0" styleClass="buttonBlueLight"
-					stylesheets="@../../../../resources/waiter.css" text="9" textFill="WHITE">
+				<Button layoutX="131.0" layoutY="487.0" mnemonicParsing="false" onAction="#press9" prefHeight="40.0" prefWidth="49.0" styleClass="buttonBlueLight" stylesheets="@../../../../resources/waiter.css" text="9" textFill="WHITE">
 					<font>
 						<Font name="Arial Black" size="17.0" />
 					</font>
 				</Button>
-				<Button layoutX="15.0" layoutY="535.0" mnemonicParsing="false"
-					prefHeight="40.0" prefWidth="49.0" styleClass="buttonBlueLight"
-					stylesheets="@../../../../resources/waiter.css" text="0" textFill="WHITE">
+				<Button layoutX="15.0" layoutY="535.0" mnemonicParsing="false" onAction="#press0" prefHeight="40.0" prefWidth="49.0" styleClass="buttonBlueLight" stylesheets="@../../../../resources/waiter.css" text="0" textFill="WHITE">
 					<font>
 						<Font name="Arial Black" size="17.0" />
 					</font>
 				</Button>
-				<Button layoutX="73.0" layoutY="535.0" mnemonicParsing="false"
-					opacity="0.9" prefHeight="40.0" prefWidth="108.0" styleClass="buttonDelete"
-					stylesheets="@../../../../resources/waiter.css" text="Clear"
-					textFill="WHITE">
+				<Button layoutX="73.0" layoutY="535.0" mnemonicParsing="false" onAction="#clearCalculator" opacity="0.9" prefHeight="40.0" prefWidth="108.0" styleClass="buttonDelete" stylesheets="@../../../../resources/waiter.css" text="Clear" textFill="WHITE">
 					<font>
 						<Font name="Arial Black" size="15.0" />
 					</font>
 				</Button>
-				<Button layoutX="14.0" layoutY="44.0" mnemonicParsing="false"
-					onAction="#removeTable" opacity="0.9" prefHeight="36.0" prefWidth="105.0"
-					styleClass="buttonDelete" text="Remove" textFill="WHITE">
+				<Button layoutX="14.0" layoutY="44.0" mnemonicParsing="false" onAction="#removeTable" opacity="0.9" prefHeight="36.0" prefWidth="105.0" styleClass="buttonDelete" text="Remove" textFill="WHITE">
 					<font>
 						<Font name="Arial Black" size="13.0" />
 					</font>

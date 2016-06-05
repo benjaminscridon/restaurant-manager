@@ -16,16 +16,16 @@ public class KitchenMain extends Application {
 	public void start(Stage primaryStage) throws Exception {
 
 		root = new BorderPane();
-//		AnchorPane login = FXMLLoader.load(getClass().getResource("/restaurant/client/waiter/view/Login.fxml"));
-//		root.setCenter(login);
+		AnchorPane kitchenScreen = FXMLLoader.load(getClass().getResource("/restaurant/client/kitchen/view/Kitchen.fxml"));
+		root.setCenter(kitchenScreen);
 
 		Scene scene = new Scene(root, 950, 700);
-		// scene.getStylesheets().add(getClass().getResource("/css/waiter.css").toExternalForm());
+		scene.getStylesheets().add(getClass().getResource("/css/kitchen.css").toExternalForm());
 		primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/kitchen/kitchen4.png")));
 		primaryStage.setScene(scene);
 		primaryStage.setOpacity(1.0);
 		primaryStage.setResizable(false);
-		primaryStage.setTitle("WaiterApp     @author Beniamin Scridon");
+		primaryStage.setTitle("KitchenApp     @author Beniamin Scridon");
 		primaryStage.show();
 	}
 

@@ -17,6 +17,7 @@ import javafx.scene.image.ImageView;
 import restaurant.client.ClientSocket;
 import restaurant.client.manager.ManagerMain;
 import restaurant.client.manager.controller.ConverterFileToImage;
+import restaurant.client.waiter.WaiterSession;
 import restaurant.client.waiter.view.ProductTable;
 import restaurant.server.model.Product;
 
@@ -37,7 +38,7 @@ public class ProductController implements Initializable {
 	private ImageView cigaretteImg;
 
 	@FXML
-	private TableView<ProductTable> table;
+	private  TableView<ProductTable> table;
 
 	@FXML
 	private TableColumn<ProductTable, String> name;
@@ -55,6 +56,7 @@ public class ProductController implements Initializable {
 		initializeTableView();
 	}
 
+	
 	private void initializeButtons() {
 		drinkImg.setImage(new Image("/waiter/drink.png"));
 		dishesImg.setImage(new Image("/waiter/dishes.png"));
@@ -62,6 +64,12 @@ public class ProductController implements Initializable {
 		cigaretteImg.setImage(new Image("/waiter/cigarette.png"));
 	}
 
+	@FXML
+	private void findSelectedProduct(){
+		ProductTable product = table.getSelectionModel().getSelectedItem();
+		WaiterSession.setCurrentProduct(product);
+	}
+	
 	private void initializeTableView() {
 		table.getStylesheets().add(getClass().getResource("/waiter/table.css").toExternalForm());
 
