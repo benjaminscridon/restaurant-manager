@@ -2,6 +2,7 @@ package restaurant.client.waiter.controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -25,6 +26,8 @@ import javafx.scene.layout.AnchorPane;
 import restaurant.client.waiter.WaiterMain;
 import restaurant.client.waiter.WaiterSession;
 import restaurant.client.waiter.view.ProductTable;
+import restaurant.server.model.Order;
+import restaurant.server.model.OrderDetail;
 import restaurant.server.model.Product;
 
 /**
@@ -91,19 +94,35 @@ public class ActivityController implements Initializable {
 		ProductTable currentProduct = WaiterSession.getCurrentProduct();
 		if (currentTable.equals("null") == false && numberofProducts.equals("null") == false
 				&& currentProduct != null) {
+			String[] selectedTable=currentTable.split(" ");
+
 			
 			//insert in database and sent to kitchen
-			
-			ordersObsList.add(
-					currentProduct.getName() + "  x" + numberofProducts + "  " + currentProduct.getPrice() + " $");
 			double sum = Double.parseDouble(numberofProducts) * Double.parseDouble(currentProduct.getPrice());
 			double total=sum;
 			if( totalField.getText().length()>0){
 				String[] info=totalField.getText().split(" ");
 				total+=Double.parseDouble(info[1]);
 			}
+			
+			Order currentOrder=new Order();
+			currentOrder.setTable_no(Integer.parseInt(selectedTable[selectedTable.length-1]));
+			//currentOrder.setWaiter_id(WaiterSession.getCurrentWaiter().getEmployee_no());
+			currentOrder.setTotal(total);
+			currentOrder.setDate(new Date(System.currentTimeMillis()));
+			currentOrder.setStatus("processing");
+			//trebuie sa mi se returneze id.ul
+			int order_id = 0;
+			
+			int quantity=Integer.parseInt(calculator.getText());
+			OrderDetail orderDetail=new OrderDetail();
+			orderDetail.setOrder_id(order_id);
+			orderDetail.setQuantity(quantity);
+			//search for id of product
+			//orderDetail.setProduct_id(currentProduct);
+			ordersObsList.add(
+					currentProduct.getName() + "  x" + numberofProducts + "  " + currentProduct.getPrice() + " $");
 			totalField.setText("Total: " + total + " $");
-
 		} else {
 			JOptionPane.showMessageDialog(null, "Select a table, product and quantity.");
 		}

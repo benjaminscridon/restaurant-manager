@@ -9,19 +9,31 @@ public class Order {
 	private int client_id;
 	private int waiter_id;
 	private Date date;
-	private float total;
+	private double total;
+	private String status;
 	
-	public Order(int id, int table_no, int client_id, int waiter_id, Date date, float total) {
+	public Order(int id, int table_no, int client_id, int waiter_id, Date date, double total,String status) {
 		this.id = id;
 		this.table_no = table_no;
 		this.client_id = client_id;
 		this.waiter_id = waiter_id;
 		this.date = date;
 		this.total = total;
+		this.status=status;
 	}
 	
 	public Order(){
 		
+	}
+
+	
+	
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 	public int getId() {
@@ -64,12 +76,12 @@ public class Order {
 		this.date = date;
 	}
 
-	public float getTotal() {
+	public double getTotal() {
 		return total;
 	}
 
-	public void setTotal(float total) {
-		this.total = total;
+	public void setTotal(double total2) {
+		this.total = total2;
 	}
 
 	@Override

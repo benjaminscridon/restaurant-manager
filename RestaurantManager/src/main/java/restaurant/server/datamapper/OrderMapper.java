@@ -16,7 +16,7 @@ public class OrderMapper {
 			dbStatement.setInt(2, o.getClient_id());
 			dbStatement.setInt(3, o.getWaiter_id());
 			dbStatement.setDate(4, o.getDate());
-			dbStatement.setFloat(5, o.getTotal());
+			dbStatement.setDouble(5, o.getTotal());
 			dbStatement.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -38,7 +38,7 @@ public class OrderMapper {
 				int waiter_id = rs.getInt("waiter_id");
 				Date date = rs.getDate("date");
 				float total =rs.getFloat("total");
-				o = new Order(order_no,table_no,client_id,waiter_id,date,total);
+				o = new Order(order_no,table_no,client_id,waiter_id,date,total, statement);
 				return o;
 			}
 		} catch (Exception e) {
@@ -61,7 +61,7 @@ public class OrderMapper {
 				int waiter_id = rs.getInt("waiter_id");
 				Date date = rs.getDate("date");
 				float total =rs.getFloat("total");
-				o = new Order(order_no,table_no,client_id,waiter_id,date,total);
+				o = new Order(order_no,table_no,client_id,waiter_id,date,total, statement);
 				orders.add(o);
 			}
 		} catch (Exception e) {
@@ -78,7 +78,7 @@ public class OrderMapper {
 			dbStatement.setInt(2, o.getClient_id());
 			dbStatement.setInt(3, o.getWaiter_id());
 			dbStatement.setDate(4, o.getDate());
-			dbStatement.setFloat(5, o.getTotal());
+			dbStatement.setDouble(5, o.getTotal());
 			dbStatement.setInt(6, o.getId());
 			dbStatement.executeUpdate();
 		} catch (Exception e) {
